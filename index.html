@@ -120,7 +120,7 @@
                     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;"
                         onmouseover="this.style.borderColor='var(--primary-cyan)'; this.style.boxShadow='0 0 15px rgba(0,240,255,0.1)';"
                         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
-                        <i class="fas fa-microchip" style="font-size: 1.5rem; color: var(--primary-cyan);"></i>
+                        <i class="fas fa-laptop-code" style="font-size: 1.5rem; color: var(--primary-cyan);"></i>
                         <div>
                             <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">20+ Projects</h4>
                             <span style="color: var(--text-secondary); font-size: 0.8rem;">Embedded & IoT Systems</span>
@@ -130,7 +130,7 @@
                     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;"
                         onmouseover="this.style.borderColor='var(--primary-cyan)'; this.style.boxShadow='0 0 15px rgba(0,240,255,0.1)';"
                         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
-                        <i class="fas fa-circuit-board" style="font-size: 1.5rem; color: #27C93F;"></i>
+                        <i class="fas fa-microchip" style="font-size: 1.5rem; color: #27C93F;"></i>
                         <div>
                             <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">PCB Design</h4>
                             <span style="color: var(--text-secondary); font-size: 0.8rem;">Hardware Prototyping</span>
@@ -176,88 +176,61 @@
 
     <!-- Dedicated Resume Section -->
     <section id="resume" class="section">
-        <div class="section-header">
+        <div class="section-header" style="text-align: center;">
             <h2><span class="gradient-text">Resume</span></h2>
-            <div class="section-divider"></div>
+            <div class="section-divider" style="margin: 0 auto;"></div>
         </div>
-        <div style="display: flex; justify-content: center;">
-            <div class="resume-card card"
-                style="background: rgba(18, 18, 21, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1); padding: 3.5rem; border-radius: 24px; max-width: 1000px; width: 100%; position: relative; overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease;"
-                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 50px rgba(0, 240, 255, 0.2)';"
-                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0, 240, 255, 0.1)';">
+        <div class="container">
+            <div class="resume-card card">
                 <!-- Glowing Orb -->
-                <div
-                    style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: rgba(0, 240, 255, 0.08); filter: blur(60px); border-radius: 50%;">
-                </div>
+                <div class="resume-orb"></div>
 
-                <div class="responsive-grid"
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; align-items: center; position: relative; z-index: 2;">
+                <div class="resume-grid">
                     <!-- Left: Info -->
-                    <div>
-                        <h3
-                            style="font-size: 2rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; color: #ffffff;">
-                            <i class="fas fa-file-alt" style="color: var(--primary-cyan);"></i> Gautam Saw
+                    <div class="resume-info">
+                        <h3>
+                            <i class="fas fa-file-pdf" style="color: var(--primary-cyan);"></i> Gautam Saw
                         </h3>
 
-                        <p
-                            style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
+                        <p>
                             Hardware engineer specializing in robust robotic platforms, custom PCB designs, and embedded
                             software architecture. Proven track record with 12+ national competition wins. Ready to
                             innovate and build the next generation of intelligent systems.
                         </p>
 
-                        <div class="skills-tags"
-                            style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 3rem;">
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">Embedded
-                                Systems</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">Robotics</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">IoT</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">PCB
-                                Design</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">Arduino</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">ESP32</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">3D
-                                Printing</span>
-                            <span class="tag"
-                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">UAVs</span>
+                        <div class="skills-tags">
+                            <span class="tag">Embedded Systems</span>
+                            <span class="tag">Robotics</span>
+                            <span class="tag">IoT</span>
+                            <span class="tag">PCB Design</span>
+                            <span class="tag">Arduino</span>
+                            <span class="tag">ESP32</span>
+                            <span class="tag">3D Printing</span>
+                            <span class="tag">UAVs</span>
                         </div>
 
-                        <div style="display: flex; gap: 1.5rem; justify-content: flex-start;">
-                            <a href="assets/resume/Gautam_Resume26.pdf" target="_blank" class="btn btn-primary"
-                                style="padding: 1rem 2rem; font-size: 1rem;" download><i
-                                    class="fas fa-external-link-alt" style="margin-right: 0.5rem;"></i> View Full</a>
-                            <a href="assets/resume/Gautam_Resume26.pdf" download class="btn btn-outline"
-                                style="padding: 1rem 2rem; font-size: 1rem;"><i class="fas fa-download"
-                                    style="margin-right: 0.5rem;"></i> Download</a>
+                        <div class="resume-btns">
+                            <a href="assets/resume/Gautam_Resume26.pdf" target="_blank" class="btn btn-primary" download>
+                                <i class="fas fa-external-link-alt"></i> View Full
+                            </a>
+                            <a href="assets/resume/Gautam_Resume26.pdf" download class="btn btn-outline">
+                                <i class="fas fa-download"></i> Download
+                            </a>
                         </div>
                     </div>
 
                     <!-- Right: Embedded PDF Preview -->
-                    <div
-                        style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.3); box-shadow: 0 0 30px rgba(0, 240, 255, 0.15); height: 480px; background: #fff;">
+                    <div class="resume-preview">
                         <!-- Top HUD Bar -->
-                        <div
-                            style="position: absolute; top: 0; left: 0; width: 100%; height: 35px; background: rgba(10, 10, 12, 0.95); border-bottom: 1px solid rgba(0, 240, 255, 0.3); display: flex; align-items: center; padding: 0 1rem; z-index: 5;">
-                            <span
-                                style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F56; margin-right: 8px;"></span>
-                            <span
-                                style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E; margin-right: 8px;"></span>
-                            <span
-                                style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F; margin-right: 20px;"></span>
-                            <span
-                                style="color: var(--primary-cyan); font-size: 0.75rem; letter-spacing: 2px; font-family: monospace;">DOC_PREVIEW
-                                // RESUME</span>
+                        <div class="preview-header">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                            <span class="preview-title">DOC_PREVIEW // RESUME</span>
                         </div>
                         <!-- Iframe -->
-                        <iframe src="assets/resume/Gautam_Resume26.pdf#toolbar=0&navpanes=0&scrollbar=0" width="100%"
-                            height="100%" style="border: none; padding-top: 35px; display: block;"></iframe>
+                        <iframe src="assets/resume/Gautam_Resume26.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" width="100%"
+                            height="100%" style="border: none; display: block; position: absolute; top: 35px; height: calc(100% - 35px);"></iframe>
                     </div>
                 </div>
             </div>
@@ -1206,7 +1179,7 @@
                         <input type="hidden" name="_subject" value="New Message from Portfolio">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
-                        
+
                         <div>
                             <input type="text" name="name" placeholder="Your Name" required autocomplete="name"
                                 style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; color: #fff; outline: none; font-family: 'Inter', sans-serif;">

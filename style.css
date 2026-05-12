@@ -250,6 +250,135 @@ h1, h2, h3, h4, .nav-logo {
     box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05);
 }
 
+/* Container */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Resume Section Styles */
+.resume-card {
+    background: rgba(18, 18, 21, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1);
+    padding: 3.5rem;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.resume-orb {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 240, 255, 0.08);
+    filter: blur(60px);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.resume-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.resume-info h3 {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #ffffff;
+}
+
+.resume-info h3 i {
+    color: var(--primary-cyan);
+}
+
+.resume-info p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+}
+
+.resume-info .skills-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 3rem;
+}
+
+.resume-info .tag {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 0.5rem 1.2rem;
+}
+
+.resume-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.resume-preview {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
+    height: 550px;
+    background: #1a1a1a;
+}
+
+.preview-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 35px;
+    background: rgba(10, 10, 12, 0.95);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    z-index: 5;
+}
+
+.preview-header .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.preview-header .dot.red { background: #FF5F56; }
+.preview-header .dot.yellow { background: #FFBD2E; }
+.preview-header .dot.green { background: #27C93F; }
+
+.preview-title {
+    color: var(--primary-cyan);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-family: monospace;
+    margin-left: 12px;
+}
+
+.resume-preview iframe {
+    /* Height handled via inline style and absolute positioning */
+}
+
 /* Project Grid & Cards */
 .project-grid {
     display: grid;
@@ -532,31 +661,43 @@ h1, h2, h3, h4, .nav-logo {
     }
     
     /* Resume Section Mobile Fixes */
-    .resume-card { padding: 1.5rem 1rem !important; }
-    
-    .resume-card > div {
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
+    .resume-card { 
+        padding: 2rem 1.5rem !important; 
     }
     
-    .resume-card h3 { font-size: 1.5rem !important; }
+    .resume-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2.5rem !important;
+        text-align: center;
+    }
     
-    /* Resume Buttons */
-    #resume a.btn {
+    .resume-info h3 { 
+        font-size: 1.8rem !important; 
+        justify-content: center;
+    }
+
+    .resume-info p {
+        font-size: 1rem !important;
+    }
+    
+    .resume-info .skills-tags {
+        justify-content: center;
+        gap: 0.6rem !important;
+    }
+
+    .resume-btns {
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+    
+    .resume-btns .btn {
         width: 100% !important;
         justify-content: center !important;
-        margin: 0.5rem 0 !important;
-        padding: 0.8rem !important;
+        margin: 0 !important;
     }
     
-    #resume div[style*="display: flex; gap: 1.5rem"] {
-        flex-direction: column !important;
-        gap: 0.5rem !important;
-    }
-    
-    /* Resume Preview Container */
-    #resume div[style*="height: 480px"] {
-        height: 350px !important;
+    .resume-preview {
+        height: 480px !important;
     }
 
     /* Contact Section Mobile Fixes */
