@@ -1,20 +1,15 @@
 :root {
-    --bg-dark: #050505;
-    --bg-surface: #0a0a0c;
-    --bg-card: #121215;
-    --border-color: rgba(255, 255, 255, 0.08);
-    
     --primary-cyan: #00f0ff;
     --primary-blue: #0070ff;
-    
+    --bg-dark: #050505;
+    --bg-card: #0a0a0c;
+    --bg-surface: #0f0f12;
     --text-primary: #ffffff;
-    --text-secondary: #a0aab5;
-    --text-muted: #64748b;
-    
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --font-heading: 'Outfit', sans-serif;
     --font-body: 'Inter', sans-serif;
-    
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --glass-bg: rgba(18, 18, 21, 0.7);
 }
 
@@ -31,15 +26,20 @@ html {
     font-family: var(--font-body);
 }
 
-body {
+html, body {
     overflow-x: hidden;
     width: 100%;
+    margin: 0;
+    padding: 0;
+    position: relative;
     line-height: 1.6;
     background-image: 
         linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
     background-size: 50px 50px;
 }
+
+
 
 img, video, iframe {
     max-width: 100%;
@@ -137,11 +137,15 @@ h1, h2, h3, h4, .nav-logo {
 
 .nav-toggle {
     display: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #fff;
     cursor: pointer;
     z-index: 1001;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
+
 
 
 /* Hero Section */
@@ -439,13 +443,26 @@ h1, h2, h3, h4, .nav-logo {
 }
 
 @media (max-width: 768px) {
-    .nav-toggle { display: block; }
+    .navbar { 
+        padding: 0.8rem 5%; 
+        justify-content: space-between;
+    }
+    
+    .nav-logo img { max-height: 35px; }
+    .nav-logo span:first-of-type { font-size: 0.9rem !important; }
+    .nav-logo span:last-of-type { font-size: 0.6rem !important; }
+
+    .nav-toggle { 
+        display: flex; 
+        margin-left: 15px;
+        font-size: 2rem !important;
+    }
     
     .nav-links {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
+        width: 85%;
         height: 100vh;
         background: rgba(10, 10, 12, 0.98);
         backdrop-filter: blur(20px);
@@ -454,118 +471,137 @@ h1, h2, h3, h4, .nav-logo {
         justify-content: center;
         align-items: center;
         gap: 2rem;
-        transition: 0.4s ease;
+        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
         border-left: 1px solid var(--border-color);
     }
     
     .nav-links.active { right: 0; }
-    .desktop-only { display: none !important; }
-    .mobile-only { display: block !important; }
-    .whatsapp-btn { display: none; } /* Hide on mobile navbar */
+    
+    /* WhatsApp Button Mobile Adjustments */
+    .whatsapp-btn {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.75rem !important;
+        border-radius: 6px !important;
+        display: flex !important; /* Force display on mobile */
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .whatsapp-btn i { font-size: 0.9rem !important; }
 
-    .hero-name { font-size: 2.8rem; }
-    .hero-badge { font-size: 0.65rem; }
+    .hero-name { font-size: 2.2rem; }
+    .hero-badge { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+    .hero-title { font-size: 0.95rem; line-height: 1.5; }
     
     .hero-btns {
         flex-direction: column;
         width: 100%;
-        gap: 1rem;
+        gap: 0.8rem;
     }
-    .hero-btns .btn { width: 100%; justify-content: center; }
+    .hero-btns .btn { width: 100%; justify-content: center; padding: 0.8rem !important; }
 
     /* Fix Grid Layouts */
     .project-grid {
         grid-template-columns: 1fr !important;
-        gap: 2rem;
+        gap: 1.5rem;
+        padding: 0 10px;
     }
 
     .cert-grid {
         grid-template-columns: 1fr !important;
+        gap: 1.5rem;
     }
 
-    /* Fix Overflows and Sizing */
-    .section-header h2 { font-size: 2rem; }
+    .project-content { padding: 1.2rem !important; }
+
+    .section-header h2 { font-size: 1.8rem; }
+
+    
+    /* Project Tags Fix */
+    .skills-tags, .project-content div[style*="flex-wrap"] {
+        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+    }
+    
+    .tag {
+        font-size: 0.65rem !important;
+        padding: 0.2rem 0.6rem !important;
+        margin: 0 !important;
+        white-space: nowrap;
+    }
     
     /* Resume Section Mobile Fixes */
-    #resume .card > div {
+    .resume-card { padding: 1.5rem 1rem !important; }
+    
+    .resume-card > div {
         grid-template-columns: 1fr !important;
-        gap: 3rem !important;
+        gap: 2rem !important;
     }
     
-    .skills-tags { justify-content: center; }
+    .resume-card h3 { font-size: 1.5rem !important; }
     
+    /* Resume Buttons */
+    #resume a.btn {
+        width: 100% !important;
+        justify-content: center !important;
+        margin: 0.5rem 0 !important;
+        padding: 0.8rem !important;
+    }
+    
+    #resume div[style*="display: flex; gap: 1.5rem"] {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+    }
+    
+    /* Resume Preview Container */
+    #resume div[style*="height: 480px"] {
+        height: 350px !important;
+    }
+
     /* Contact Section Mobile Fixes */
+    #contact .card { padding: 1.5rem 1rem !important; }
+    
     #contact .card > div:last-child {
         grid-template-columns: 1fr !important;
-        gap: 3rem !important;
+        gap: 2rem !important;
     }
     
-    .responsive-grid {
+    /* Long text/Email wrap fix */
+    #contact a.btn {
+        width: 100% !important;
+        word-break: break-all !important;
+        font-size: 0.8rem !important;
+        padding: 0.8rem 1rem !important;
+        height: auto !important;
+        min-height: 50px;
+        white-space: normal !important;
+        display: flex !important;
+        align-items: center;
+    }
+
+    .responsive-grid, .responsive-grid-2 {
         grid-template-columns: 1fr !important;
-        gap: 2.5rem !important;
+        gap: 1.5rem !important;
     }
     
     .responsive-flex {
         flex-direction: column !important;
-        gap: 3rem !important;
-        text-align: center;
-    }
-
-    .responsive-grid-2 {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-    }
-    
-    .mobile-h2 { font-size: 1.8rem !important; }
-
-    /* Modal Adjustments */
-    #project-modal button { 
-        top: 1rem !important; 
-        right: 1rem !important; 
-        width: 35px !important; 
-        height: 35px !important; 
-        font-size: 1.5rem !important; 
-    }
-    
-    .modal-content { width: 95% !important; max-height: 85vh !important; }
-    .modal-info { padding: 1.5rem !important; }
-    
-    /* Logo Modal Mobile Fix */
-    #logo-modal img { height: 100px !important; }
-    #logo-modal span:first-of-type { font-size: 1.8rem !important; }
-    #logo-modal span:last-of-type { font-size: 0.9rem !important; letter-spacing: 2px !important; }
-
-    /* Global Section Padding */
-    .section { padding: 60px 5% !important; }
-    
-    .resume-card { padding: 1.5rem !important; }
-    .resume-card > div { 
-        grid-template-columns: 1fr !important; 
         gap: 2rem !important;
     }
+
+    .section { padding: 50px 4% !important; }
     
-    .project-card { margin-bottom: 1rem; }
-    
-    /* Contact form elements */
-    #contact .card { padding: 2rem 1.5rem !important; }
-    #contact .card > div:last-child {
-        grid-template-columns: 1fr !important;
-        gap: 2rem !important;
-    }
-    
-    .hero-name { font-size: 2.5rem !important; }
-    .hero-title { font-size: 1rem !important; }
+    /* Modal Fixes */
+    .modal-content { width: 95% !important; border-radius: 12px !important; }
+    #project-modal button { top: 0.5rem !important; right: 0.5rem !important; }
 }
 
 @media (max-width: 480px) {
-    .hero-name { font-size: 2.2rem !important; }
-    .hero-title { font-size: 0.95rem !important; }
-    .section-header h2 { font-size: 1.8rem !important; }
-    
-    /* Buttons */
-    .btn { padding: 0.8rem 1.2rem !important; font-size: 0.85rem !important; }
+    .hero-name { font-size: 1.8rem !important; }
+    .section-header h2 { font-size: 1.5rem !important; }
 }
+
 
 
 
