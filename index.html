@@ -43,11 +43,17 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#certificates">Certificates</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li class="mobile-only"><a href="https://wa.me/919334053907"
+                    style="background: #25D366; color: white; padding: 0.8rem; border-radius: 8px; text-align: center; margin-top: 1rem;"><i
+                        class="fab fa-whatsapp"></i> Chat Now</a></li>
         </ul>
-        <a href="https://wa.me/919334053907" class="btn"
+        <a href="https://wa.me/919334053907" class="btn whatsapp-btn desktop-only"
             style="padding: 0.6rem 1.2rem; font-size: 0.8rem; background: #25D366; color: #ffffff; border: none;">
             <i class="fab fa-whatsapp"></i> Chat Now
         </a>
+        <div class="nav-toggle" id="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -82,7 +88,7 @@
             <h2>About <span class="gradient-text">Me</span></h2>
             <div class="section-divider"></div>
         </div>
-        <div
+        <div class="responsive-grid"
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto;">
             <!-- Left Side: Image/Workspace -->
             <div class="reveal" style="display: flex; justify-content: center; align-items: center;">
@@ -101,7 +107,7 @@
                 </p>
 
                 <!-- Engineering Stats Grid -->
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                <div class="responsive-grid-2" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;"
                         onmouseover="this.style.borderColor='var(--primary-cyan)'; this.style.boxShadow='0 0 15px rgba(0,240,255,0.1)';"
                         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
@@ -185,7 +191,7 @@
                     style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: rgba(0, 240, 255, 0.08); filter: blur(60px); border-radius: 50%;">
                 </div>
 
-                <div
+                <div class="responsive-grid"
                     style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; align-items: center; position: relative; z-index: 2;">
                     <!-- Left: Info -->
                     <div>
@@ -612,7 +618,8 @@
                     <div class="play-overlay" style="background: rgba(0, 240, 255, 0.1); backdrop-filter: blur(2px);">
                         <div class="play-btn"
                             style="border-radius: 8px; padding: 12px 20px; width: auto; height: auto; background: rgba(0, 240, 255, 0.2); border: 1px solid var(--primary-cyan); box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);">
-                            <i class="fas fa-mobile-alt" style="margin-right: 10px;"></i> View App Gallery</div>
+                            <i class="fas fa-mobile-alt" style="margin-right: 10px;"></i> View App Gallery
+                        </div>
                     </div>
                 </div>
                 <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
@@ -1145,14 +1152,16 @@
     <section id="contact" class="section">
         <div class="card reveal"
             style="background: linear-gradient(135deg, #121215 0%, #050505 100%); border-left: 6px solid var(--primary-cyan);">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Let's <span class="gradient-text">Collaborate</span>
+            <div style="text-align: center; margin-bottom: 3rem; padding: 0 1rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;" class="mobile-h2">Let's <span
+                        class="gradient-text">Collaborate</span>
                 </h2>
-                <p style="color: var(--text-secondary);">Seeking opportunities in embedded systems, drone technology,
+                <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">Seeking opportunities in
+                    embedded systems, drone technology,
                     and high-precision robotics development.</p>
             </div>
 
-            <div
+            <div class="responsive-grid"
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 4rem; text-align: left;">
 
                 <!-- Left: Social & Direct Links -->
