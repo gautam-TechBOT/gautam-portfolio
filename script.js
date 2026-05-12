@@ -21,6 +21,7 @@ function openModal(title, mediaSrc, desc, tags, displayType = 'youtube-link') {
     const modalYoutubeLink = document.getElementById('modal-youtube-link');
     
     if (!modal) return;
+    if (modalYoutubeLink) modalYoutubeLink.style.display = 'inline-flex';
 
     // Get Audio instance
     const audio = getAudioInstance();
@@ -58,6 +59,7 @@ function openModal(title, mediaSrc, desc, tags, displayType = 'youtube-link') {
         if (modalYoutubeLink) modalYoutubeLink.style.display = 'none';
         
     } else if (displayType === 'image-gallery') {
+        if (modalYoutubeLink) modalYoutubeLink.style.display = 'none';
         if (Array.isArray(mediaSrc) && mediaSrc.length > 0) {
             let galleryHTML = '<div class="gallery-slider" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; border-radius: 20px 20px 0 0; overflow: hidden;">';
             mediaSrc.forEach((src, idx) => {
