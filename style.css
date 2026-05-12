@@ -338,8 +338,8 @@ h1, h2, h3, h4, .nav-logo {
     overflow: hidden;
     border: 1px solid rgba(0, 240, 255, 0.3);
     box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);
-    height: 550px;
-    background: #1a1a1a;
+    height: 650px;
+    background: #111;
 }
 
 .preview-header {
@@ -697,7 +697,7 @@ h1, h2, h3, h4, .nav-logo {
     }
     
     .resume-preview {
-        height: 480px !important;
+        height: 450px !important;
     }
 
     /* Contact Section Mobile Fixes */
