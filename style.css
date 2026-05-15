@@ -816,3 +816,72 @@ h1, h2, h3, h4, .nav-logo {
     0% { transform: translateY(-100%); }
     100% { transform: translateY(1000%); }
 }
+
+/* Media Loading Experience */
+.hero-visual, 
+.video-container, 
+.resume-preview, 
+.cert-card,
+.workspace-showcase {
+    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-visual::before, 
+.video-container::before, 
+.resume-preview::before, 
+.cert-card::before,
+.workspace-showcase::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 240, 255, 0.05) 50%, 
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer-load 2s infinite linear;
+    z-index: 0;
+}
+
+@keyframes shimmer-load {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Ensure assets stay on top and have a background to hide shimmer when loaded */
+.hero-visual img, 
+.video-container video, 
+.video-container img, 
+.resume-preview iframe, 
+.cert-preview,
+.workspace-showcase img {
+    position: relative;
+    z-index: 1;
+    background-color: var(--bg-dark);
+}
+
+/* Specific fix for resume preview iframe which can be transparent while loading */
+.resume-preview::after {
+    content: "\f110";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-cyan);
+    font-size: 2rem;
+    animation: spin 1s linear infinite;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.resume-preview.loaded::after {
+    display: none;
+}
+

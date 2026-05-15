@@ -301,9 +301,19 @@ const initHeroSlideshow = () => {
     }, 4000);
 };
 
+const initResumeLoading = () => {
+    const resumePreview = document.querySelector('.resume-preview');
+    const iframe = resumePreview ? resumePreview.querySelector('iframe') : null;
+    if (iframe) {
+        iframe.onload = () => {
+            resumePreview.classList.add('loaded');
+        };
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initReveal(); initNavbar(); initSmoothScroll(); initParallax(); initScrollSpy(); initHeroSlideshow();
-    initCardSlideshows();
+    initCardSlideshows(); initResumeLoading();
     window.openModal = openModal; window.closeModal = closeModal;
     window.openCertModal = openCertModal; window.closeCertModal = closeCertModal;
 });
