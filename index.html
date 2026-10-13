@@ -39,20 +39,17 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#certificates">Certificates</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="#skills-in-action">Skills in Action</a></li>
         </ul>
-        <div class="nav-actions" style="display: flex; align-items: center; gap: 10px;">
-            <a href="https://wa.me/919334053907" class="btn whatsapp-btn"
-                style="padding: 0.6rem 1.2rem; font-size: 0.8rem; background: #25D366; color: #ffffff; border: none;">
-                <i class="fab fa-whatsapp"></i> Chat Now
-            </a>
-            <div class="nav-toggle" id="nav-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
+        <a href="https://wa.me/919334053907" class="btn"
+            style="padding: 0.6rem 1.2rem; font-size: 0.8rem; background: #25D366; color: #ffffff; border: none;">
+            <i class="fab fa-whatsapp"></i> Chat Now
+        </a>
     </nav>
 
     <!-- Hero Section -->
@@ -87,7 +84,7 @@
             <h2>About <span class="gradient-text">Me</span></h2>
             <div class="section-divider"></div>
         </div>
-        <div class="responsive-grid"
+        <div
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto;">
             <!-- Left Side: Image/Workspace -->
             <div class="reveal" style="display: flex; justify-content: center; align-items: center;">
@@ -106,7 +103,7 @@
                 </p>
 
                 <!-- Engineering Stats Grid -->
-                <div class="responsive-grid-2" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
                     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;"
                         onmouseover="this.style.borderColor='var(--primary-cyan)'; this.style.boxShadow='0 0 15px rgba(0,240,255,0.1)';"
                         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
@@ -120,7 +117,7 @@
                     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;"
                         onmouseover="this.style.borderColor='var(--primary-cyan)'; this.style.boxShadow='0 0 15px rgba(0,240,255,0.1)';"
                         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
-                        <i class="fas fa-laptop-code" style="font-size: 1.5rem; color: var(--primary-cyan);"></i>
+                        <i class="fas fa-microchip" style="font-size: 1.5rem; color: var(--primary-cyan);"></i>
                         <div>
                             <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">20+ Projects</h4>
                             <span style="color: var(--text-secondary); font-size: 0.8rem;">Embedded & IoT Systems</span>
@@ -130,7 +127,7 @@
                     <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.2rem; display: flex; align-items: center; gap: 1rem; transition: all 0.3s ease;"
                         onmouseover="this.style.borderColor='var(--primary-cyan)'; this.style.boxShadow='0 0 15px rgba(0,240,255,0.1)';"
                         onmouseout="this.style.borderColor='rgba(255,255,255,0.08)'; this.style.boxShadow='none';">
-                        <i class="fas fa-microchip" style="font-size: 1.5rem; color: #27C93F;"></i>
+                        <i class="fas fa-circuit-board" style="font-size: 1.5rem; color: #27C93F;"></i>
                         <div>
                             <h4 style="color: #fff; font-size: 1rem; margin-bottom: 2px;">PCB Design</h4>
                             <span style="color: var(--text-secondary); font-size: 0.8rem;">Hardware Prototyping</span>
@@ -176,73 +173,94 @@
 
     <!-- Dedicated Resume Section -->
     <section id="resume" class="section">
-        <div class="section-header reveal">
+        <div class="section-header">
             <h2><span class="gradient-text">Resume</span></h2>
             <div class="section-divider"></div>
         </div>
-        <div class="container">
-            <div class="resume-card card">
+        <div style="display: flex; justify-content: center;">
+            <div class="resume-card card"
+                style="background: rgba(18, 18, 21, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(0, 240, 255, 0.2); box-shadow: 0 10px 40px rgba(0, 240, 255, 0.1); padding: 3.5rem; border-radius: 24px; max-width: 1000px; width: 100%; position: relative; overflow: hidden; transition: transform 0.4s ease, box-shadow 0.4s ease;"
+                onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 20px 50px rgba(0, 240, 255, 0.2)';"
+                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 40px rgba(0, 240, 255, 0.1)';">
                 <!-- Glowing Orb -->
-                <div class="resume-orb"></div>
+                <div
+                    style="position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: rgba(0, 240, 255, 0.08); filter: blur(60px); border-radius: 50%;">
+                </div>
 
-                <div class="resume-grid">
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; align-items: center; position: relative; z-index: 2;">
                     <!-- Left: Info -->
-                    <div class="resume-info">
-                        <h3>
-                            <i class="fas fa-file-pdf" style="color: var(--primary-cyan);"></i> Gautam Saw
+                    <div>
+                        <h3
+                            style="font-size: 2rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; color: #ffffff;">
+                            <i class="fas fa-file-alt" style="color: var(--primary-cyan);"></i> Gautam Saw
                         </h3>
 
-                        <p>
+                        <p
+                            style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">
                             Hardware engineer specializing in robust robotic platforms, custom PCB designs, and embedded
                             software architecture. Proven track record with 12+ national competition wins. Ready to
                             innovate and build the next generation of intelligent systems.
                         </p>
 
-                        <div class="skills-tags">
-                            <span class="tag">Embedded Systems</span>
-                            <span class="tag">Robotics</span>
-                            <span class="tag">IoT</span>
-                            <span class="tag">PCB Design</span>
-                            <span class="tag">Arduino</span>
-                            <span class="tag">ESP32</span>
-                            <span class="tag">3D Printing</span>
-                            <span class="tag">UAVs</span>
+                        <div id="skills" style="scroll-margin-top: 85px;"></div>
+                        <div class="skills-tags"
+                            style="display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 3rem;">
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">Embedded
+                                Systems</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">Robotics</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">IoT</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">PCB
+                                Design</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">Arduino</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">ESP32</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">3D
+                                Printing</span>
+                            <span class="tag"
+                                style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #fff; padding: 0.5rem 1.2rem;">UAVs</span>
                         </div>
 
-                        <div class="resume-btns">
-                            <a href="assets/resume/Gautam_Resume26.pdf" target="_blank" class="btn btn-primary">
-                                <i class="fas fa-external-link-alt"></i> View Full
-                            </a>
-                            <a href="assets/resume/Gautam_Resume26.pdf" download class="btn btn-outline">
-                                <i class="fas fa-download"></i> Download
-                            </a>
+                        <div style="display: flex; gap: 1.5rem; justify-content: flex-start;">
+                            <a href="assets/GAUTAM_RESUME.pdf" target="_blank" class="btn btn-primary"
+                                style="padding: 1rem 2rem; font-size: 1rem;"><i class="fas fa-external-link-alt"
+                                    style="margin-right: 0.5rem;"></i> View Full</a>
+                            <a href="assets/GAUTAM_RESUME.pdf" download="GAUTAM_RESUME.pdf" class="btn btn-outline"
+                                style="padding: 1rem 2rem; font-size: 1rem;"><i class="fas fa-download"
+                                    style="margin-right: 0.5rem;"></i> Download</a>
                         </div>
                     </div>
 
                     <!-- Right: Embedded PDF Preview -->
-                    <div class="resume-preview">
+                    <div
+                        style="position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.3); box-shadow: 0 0 30px rgba(0, 240, 255, 0.15); height: 480px; background: #fff;">
                         <!-- Top HUD Bar -->
-                        <div class="preview-header">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                            <span class="preview-title">DOC_PREVIEW // RESUME</span>
+                        <div
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 35px; background: rgba(10, 10, 12, 0.95); border-bottom: 1px solid rgba(0, 240, 255, 0.3); display: flex; align-items: center; padding: 0 1rem; z-index: 5;">
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #FF5F56; margin-right: 8px;"></span>
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #FFBD2E; margin-right: 8px;"></span>
+                            <span
+                                style="width: 10px; height: 10px; border-radius: 50%; background: #27C93F; margin-right: 20px;"></span>
+                            <span
+                                style="color: var(--primary-cyan); font-size: 0.75rem; letter-spacing: 2px; font-family: monospace;">DOC_PREVIEW
+                                // RESUME</span>
                         </div>
                         <!-- Iframe -->
-                        <iframe src="assets/resume/Gautam_Resume26.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-                            width="100%" height="100%"
-                            style="border: none; display: block; position: absolute; top: 35px; height: calc(100% - 35px);"></iframe>
+                        <iframe src="assets/GAUTAM_RESUME.pdf#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="100%"
+                            style="border: none; padding-top: 35px; display: block;"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
-
-
-
 
 
     <!-- Projects Portfolio -->
@@ -568,6 +586,113 @@
                         Details</button>
                 </div>
             </div>
+            <div class="project-card card reveal" style="display: flex; flex-direction: column;">
+                <div class="video-container"
+                    style="border-radius: 12px 12px 0 0; overflow: hidden; position: relative; aspect-ratio: 4/3; background: #050505; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                    onclick="openModal('Dual-Motor Planar Linkage Mechanism', ['assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism.mp4'], 'dual-motor-planar-linkage-mechanism-desc', ['ESP32', 'Stepper Motors', 'DM542', 'Linkage Mechanism', 'Embedded C/C++'], 'local-video')">
+                    <img src="assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism.jpeg"
+                        alt="Dual-Motor Planar Linkage Mechanism Thumbnail"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fas fa-play" style="margin-left: 4px;"></i></div>
+                    </div>
+                </div>
+                <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 1rem;">
+                        <span class="tag">ESP32</span><span class="tag">Stepper Motors</span><span
+                            class="tag">Mechanism</span>
+                    </div>
+                    <h3>Dual-Motor Planar Linkage Mechanism</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; flex: 1;">A dual-stepper-motor
+                        mechanical linkage prototype controlled using an ESP32 and DM542 drivers to achieve coordinated
+                        motion based on supplied coordinates.</p>
+                    <button class="btn btn-outline" style="width: 100%; justify-content: center;"
+                        onclick="openModal('Dual-Motor Planar Linkage Mechanism', ['assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism.mp4'], 'dual-motor-planar-linkage-mechanism-desc', ['ESP32', 'Stepper Motors', 'DM542', 'Linkage Mechanism', 'Embedded C/C++'], 'local-video')">View
+                        Details</button>
+                </div>
+            </div>
+            <div class="project-card card reveal" style="display: flex; flex-direction: column;">
+                <div class="video-container"
+                    style="border-radius: 12px 12px 0 0; overflow: hidden; position: relative; aspect-ratio: 4/3; background: #050505; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                    onclick="openModal('Autonomous Multi-Purpose UAV: Agriculture, Surveillance &amp; Smart Delivery', ['assets/projects/autonomous-multi-purpose-uav/radiolink-flying.mp4'], 'autonomous-multi-purpose-uav-desc', ['UAV', 'Pixhawk', 'RadioLink CrossFlight', 'ArduPilot', 'Mission Planner', 'GPS Navigation'], 'local-video')">
+                    <img src="assets/projects/autonomous-multi-purpose-uav/pixahawk-drone.jpeg"
+                        alt="Autonomous Multi-Purpose UAV Thumbnail"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fas fa-play" style="margin-left: 4px;"></i></div>
+                    </div>
+                </div>
+                <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 1rem;">
+                        <span class="tag">UAV</span><span class="tag">Pixhawk / CrossFlight</span><span class="tag">GPS
+                            Navigation</span>
+                    </div>
+                    <h3>Autonomous Multi-Purpose UAV: Agriculture, Surveillance &amp; Smart Delivery</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; flex: 1;">Autonomous multi-purpose
+                        quadcopter platform developed with Pixhawk 2.4.8 (ArduPilot) and RadioLink CrossFlight systems
+                        for GPS navigation, automated waypoint missions, and surveillance applications.</p>
+                    <button class="btn btn-outline" style="width: 100%; justify-content: center;"
+                        onclick="openModal('Autonomous Multi-Purpose UAV: Agriculture, Surveillance &amp; Smart Delivery', ['assets/projects/autonomous-multi-purpose-uav/radiolink-flying.mp4'], 'autonomous-multi-purpose-uav-desc', ['UAV', 'Pixhawk', 'RadioLink CrossFlight', 'ArduPilot', 'Mission Planner', 'GPS Navigation'], 'local-video')">View
+                        Details</button>
+                </div>
+            </div>
+            <!-- Robotic Toilet Seat Cleaning System -->
+            <div class="project-card card reveal" style="display: flex; flex-direction: column;">
+                <div class="video-container"
+                    style="border-radius: 12px 12px 0 0; overflow: hidden; position: relative; aspect-ratio: 4/3; background: #050505; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                    onclick="openModal('Robotic Toilet Seat Cleaning System', ['assets/projects/autonomous-toilet-seat-mapping-cleaning/cleaning-robotic-arm.mp4'], 'robotic-toilet-seat-cleaning-system-desc', ['ESP32', 'PCA9685', 'Robotic Arm', 'Servo Control', '3D Printing', 'Automated Cleaning'], 'local-video')">
+                    <img src="assets/projects/autonomous-toilet-seat-mapping-cleaning/robotic-arm.jpeg"
+                        alt="Robotic Toilet Seat Cleaning System Thumbnail"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain;">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fas fa-play" style="margin-left: 4px;"></i></div>
+                    </div>
+                </div>
+                <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 1rem;">
+                        <span class="tag">ESP32</span><span class="tag">PCA9685</span><span class="tag">Robotic
+                            Arm</span>
+                    </div>
+                    <h3>Robotic Toilet Seat Cleaning System</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; flex: 1;">A robotic arm-based
+                        cleaning mechanism designed to map the toilet seat surface and clean it using a motor-driven
+                        rotating brush.</p>
+                    <button class="btn btn-outline" style="width: 100%; justify-content: center;"
+                        onclick="openModal('Robotic Toilet Seat Cleaning System', ['assets/projects/autonomous-toilet-seat-mapping-cleaning/cleaning-robotic-arm.mp4'], 'robotic-toilet-seat-cleaning-system-desc', ['ESP32', 'PCA9685', 'Robotic Arm', 'Servo Control', '3D Printing', 'Automated Cleaning'], 'local-video')">View
+                        Details</button>
+                </div>
+            </div>
+            <!-- ESP32 Underwater ROV -->
+            <div class="project-card card reveal" style="display: flex; flex-direction: column;">
+                <div class="video-container"
+                    style="border-radius: 12px 12px 0 0; overflow: hidden; position: relative; aspect-ratio: 4/3; background: #050505; display: flex; align-items: center; justify-content: center; cursor: pointer;"
+                    onclick="openModal('ESP32-Based Underwater ROV with Custom EDF Propulsion', ['assets/projects/esp32-underwater-rov/underwater_rov.mp4'], 'esp32-underwater-rov-desc', ['ESP32', 'BLDC Motors', 'EDF Propulsion', 'Servo Control', '3D Printing', 'Underwater ROV'], 'local-video')">
+                    <img src="assets/projects/esp32-underwater-rov/esp32-underwater-rov.jpeg"
+                        alt="ESP32 Underwater ROV Thumbnail"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+                    <div class="play-overlay">
+                        <div class="play-btn"><i class="fas fa-play" style="margin-left: 4px;"></i></div>
+                    </div>
+                </div>
+                <div class="project-content" style="flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 1rem;">
+                        <span class="tag">ESP32</span><span class="tag">EDF Propulsion</span><span
+                            class="tag">Underwater ROV</span>
+                    </div>
+                    <h3>ESP32-Based Underwater ROV with Custom EDF Propulsion</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; flex: 1;">An ESP32-controlled
+                        underwater vehicle prototype with two custom 3D-printed EDF propulsion units, BLDC motors, and
+                        servo-based directional control via a wired joystick.</p>
+                    <div style="display: flex; gap: 0.75rem;">
+                        <button class="btn btn-outline" style="flex: 1; justify-content: center;"
+                            onclick="openModal('ESP32-Based Underwater ROV with Custom EDF Propulsion', ['assets/projects/esp32-underwater-rov/underwater_rov.mp4'], 'esp32-underwater-rov-desc', ['ESP32', 'BLDC Motors', 'EDF Propulsion', 'Servo Control', '3D Printing', 'Underwater ROV'], 'local-video')">
+                            <i class="fas fa-play" style="margin-right: 6px;"></i> Watch Video</button>
+                        <button class="btn btn-outline" style="flex: 1; justify-content: center;"
+                            onclick="openModal('ESP32-Based Underwater ROV — Photos', ['assets/projects/esp32-underwater-rov/esp32-underwater-rov.jpeg', 'assets/projects/esp32-underwater-rov/esp32-underwater-rov2.jpeg'], null, ['ESP32', 'BLDC Motors', 'EDF Propulsion', 'Underwater ROV'], 'image-gallery')">
+                            <i class="fas fa-images" style="margin-right: 6px;"></i> Photos</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
@@ -826,6 +951,604 @@
 
         </div>
 
+        <div id='dual-motor-planar-linkage-mechanism-desc'>
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Project
+                Overview</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                The Dual-Motor Planar Linkage Mechanism is a custom mechanical prototype consisting of interconnected
+                links, pivot joints, and two motor-driven base positions. It was developed to study planar linkage
+                movement and stepper motor actuation. The prototype uses an ESP32 microcontroller, two DM542 stepper
+                motor drivers, two NEMA 23 stepper motors, and a custom mechanical linkage. The ESP32-based system
+                controls the two stepper motors, and their coordinated movement drives the planar linkage according to
+                the coordinates provided to the control system.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Objectives
+            </h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>Design and fabricate a planar mechanical linkage.</li>
+                <li>Integrate two stepper motors with independent DM542 drivers.</li>
+                <li>Generate STEP and DIR signals using an ESP32.</li>
+                <li>Drive the planar mechanical linkage through coordinated dual-motor movement according to supplied
+                    coordinates.</li>
+                <li>Study the relationship between motor movement and linkage position.</li>
+                <li>Develop a platform for future coordinated motion control.</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Components
+                Used</h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>ESP32 development board</li>
+                <li>2 &times; DM542 stepper motor drivers</li>
+                <li>2 &times; NEMA 23 stepper motors</li>
+                <li>12 V, 20 A DC switching power supply</li>
+                <li>Custom mechanical linkage and base</li>
+                <li>Pivot joints, fasteners, and wiring</li>
+                <li>USB cable for ESP32 programming and testing</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Technical
+                Details &amp; Wiring Connections</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem;'>
+                <p style='color: #fff; font-weight: 600; margin-bottom: 0.5rem;'><i class='fas fa-microchip'
+                        style='color: var(--primary-cyan); margin-right: 6px;'></i> Motor 1 Connections:</p>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:disc; margin-bottom: 0.8rem;'>
+                    <li>ESP32 VIN (5 V) &rarr; DM542 PUL+</li>
+                    <li>GPIO 18 &rarr; PUL&minus;</li>
+                    <li>ESP32 VIN (5 V) &rarr; DIR+</li>
+                    <li>GPIO 19 &rarr; DIR&minus;</li>
+                </ul>
+                <p style='color: #fff; font-weight: 600; margin-bottom: 0.5rem;'><i class='fas fa-microchip'
+                        style='color: var(--primary-cyan); margin-right: 6px;'></i> Motor 2 Connections:</p>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:disc; margin-bottom: 0.8rem;'>
+                    <li>ESP32 VIN (5 V) &rarr; DM542 PUL+</li>
+                    <li>GPIO 25 &rarr; PUL&minus;</li>
+                    <li>ESP32 VIN (5 V) &rarr; DIR+</li>
+                    <li>GPIO 26 &rarr; DIR&minus;</li>
+                </ul>
+                <p style='color: var(--text-muted); font-size: 0.85rem; margin-bottom: 0;'>
+                    <em>Note: ENA terminals were disconnected during the reported successful test setup. Driver and
+                        motor stages are powered via a 12 V, 20 A DC switching power supply.</em>
+                </p>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Working
+                Principle</h4>
+            <ol style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; margin-bottom:1.5rem;'>
+                <li>The ESP32 generates STEP pulses for each DM542 driver based on target coordinates.</li>
+                <li>The DIR signal determines the rotation direction for each motor axis.</li>
+                <li>Each DM542 driver controls and powers its corresponding NEMA 23 stepper motor.</li>
+                <li>Motor rotation drives the interconnected mechanical linkage.</li>
+                <li>Coordinated movement of both motors articulates the linkage according to the supplied coordinates.
+                </li>
+            </ol>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Current
+                Testing Status</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--primary-cyan); padding: 1rem 1.2rem; margin-bottom: 1.5rem;'>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom: 0;'>
+                    <li>The physical linkage prototype and base structure have been fabricated.</li>
+                    <li>ESP32 STEP/DIR connections were integrated with both DM542 drivers.</li>
+                    <li>The mechanism was tested with both motors working together in coordination.</li>
+                    <li>The linkage moved according to the coordinates provided to the control system.</li>
+                </ul>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Technologies
+                &amp; Tools</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                ESP32, Embedded C/C++, DM542 Stepper Drivers, NEMA 23 Stepper Motors, STEP/DIR Control, Mechanical
+                Linkage Design,
+                Coordinated Kinematics, Prototyping, Electrical Wiring, and Troubleshooting.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-video' style='margin-right: 8px;'></i>Project Demonstration Videos</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;'>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle'
+                            style='color: var(--primary-cyan); margin-right: 6px;'></i>Demonstration Video 1</p>
+                    <video
+                        src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism.mp4'
+                        controls preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle'
+                            style='color: var(--primary-cyan); margin-right: 6px;'></i>Demonstration Video 2</p>
+                    <video
+                        src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism video2.mp4'
+                        controls preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism video2.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-images' style='margin-right: 8px;'></i>Project Photo Gallery</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.8rem; margin-bottom: 1.5rem;'>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism.jpeg'
+                        alt='Planar Linkage Prototype'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism1.jpeg'
+                        alt='Mechanism Joint View'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism 2.jpeg'
+                        alt='Dual Motor Base Setup'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism 4.jpeg'
+                        alt='Linkage Link Assembly'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/Dual-Motor Planar Linkage Mechanism/Dual-Motor Planar Linkage Mechanism  5.jpeg'
+                        alt='Wiring and Drivers Setup'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+            </div>
+        </div>
+
+        <div id='robotic-toilet-seat-cleaning-system-desc'>
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Project
+                Overview</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                The Autonomous Toilet Seat Mapping &amp; Robotic Cleaning System is a custom-built robotic arm designed
+                to systematically map the surface of a toilet seat and then use a motor-driven rotating brush to clean
+                it. The arm is constructed from 3D-printed structural parts and is controlled via an ESP32-WROOM-32
+                microcontroller interfaced with a PCA9685 16-channel PWM driver. Five servo motors provide articulated
+                motion across the base, shoulder, elbow, and wrist joints, while a DC geared motor drives the rotating
+                cleaning brush.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Project
+                Objectives</h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>Design and fabricate a multi-joint robotic arm capable of reaching across a toilet seat surface.
+                </li>
+                <li>Integrate a PCA9685 PWM driver with an ESP32 to control multiple servo channels simultaneously.</li>
+                <li>Drive a rotating cleaning brush using a DC geared motor and a dedicated motor driver.</li>
+                <li>Develop a motion sequence to map the toilet seat surface and execute a cleaning pass.</li>
+                <li>Produce all structural arm parts using 3D printing for rapid prototyping and iteration.</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Hardware
+                Components</h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>ESP32-WROOM-32 development board</li>
+                <li>PCA9685 16-channel, 12-bit PWM servo driver (I&sup2;C)</li>
+                <li>Five servo motors (base, shoulder master, shoulder slave, elbow, wrist)</li>
+                <li>DC geared motor for rotating the cleaning brush</li>
+                <li>DC motor driver module for brush motor control</li>
+                <li>3D-printed base, arm links, wrist mount, and servo mounting parts</li>
+                <li>Rotary cleaning brush attachment</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Mechanical
+                Design</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem;'>
+                <p style='color: #fff; font-weight: 600; margin-bottom: 0.5rem;'><i class='fas fa-ruler-combined'
+                        style='color: var(--primary-cyan); margin-right: 6px;'></i>Arm Link Dimensions:</p>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:disc; margin-bottom: 0;'>
+                    <li>Base to Shoulder: <strong style='color:#fff;'>20 cm</strong></li>
+                    <li>Shoulder to Elbow: <strong style='color:#fff;'>14 cm</strong></li>
+                    <li>Elbow to Wrist: <strong style='color:#fff;'>20 cm</strong></li>
+                </ul>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Servo Channel
+                Mapping</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem; overflow-x: auto;'>
+                <table style='width:100%; border-collapse: collapse; color: var(--text-secondary); font-size: 0.9rem;'>
+                    <thead>
+                        <tr style='border-bottom: 1px solid rgba(0,240,255,0.2);'>
+                            <th style='text-align:left; padding: 0.5rem 0.8rem; color: var(--primary-cyan);'>Joint</th>
+                            <th style='text-align:left; padding: 0.5rem 0.8rem; color: var(--primary-cyan);'>PCA9685
+                                Channel</th>
+                            <th style='text-align:left; padding: 0.5rem 0.8rem; color: var(--primary-cyan);'>Initial
+                                Position</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                            <td style='padding: 0.5rem 0.8rem;'>Base</td>
+                            <td style='padding: 0.5rem 0.8rem;'>Channel 0</td>
+                            <td style='padding: 0.5rem 0.8rem;'>90&deg;</td>
+                        </tr>
+                        <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                            <td style='padding: 0.5rem 0.8rem;'>Shoulder Master</td>
+                            <td style='padding: 0.5rem 0.8rem;'>Channel 1</td>
+                            <td style='padding: 0.5rem 0.8rem;'>90&deg;</td>
+                        </tr>
+                        <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                            <td style='padding: 0.5rem 0.8rem;'>Shoulder Slave</td>
+                            <td style='padding: 0.5rem 0.8rem;'>Channel 2</td>
+                            <td style='padding: 0.5rem 0.8rem;'>90&deg; (mirrors master)</td>
+                        </tr>
+                        <tr style='border-bottom: 1px solid rgba(255,255,255,0.05);'>
+                            <td style='padding: 0.5rem 0.8rem;'>Elbow</td>
+                            <td style='padding: 0.5rem 0.8rem;'>Channel 3</td>
+                            <td style='padding: 0.5rem 0.8rem;'>90&deg;</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 0.5rem 0.8rem;'>Wrist</td>
+                            <td style='padding: 0.5rem 0.8rem;'>Channel 4</td>
+                            <td style='padding: 0.5rem 0.8rem;'>180&deg;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Shoulder
+                Master&#8209;Slave Relationship</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--primary-cyan); padding: 0.8rem 1.2rem; margin-bottom: 1.5rem; font-family: monospace; color: #fff; font-size: 0.95rem;'>
+                Shoulder Slave Angle = 180&deg; &minus; Shoulder Master Angle
+            </div>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                The shoulder joint uses two opposing servo motors to provide balanced torque. The slave servo always
+                moves to the supplementary angle of the master servo, ensuring both servos work in the same rotational
+                direction on the joint without opposing each other.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Working
+                Principle</h4>
+            <ol style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; margin-bottom:1.5rem;'>
+                <li>The ESP32 communicates with the PCA9685 over I&sup2;C to generate PWM signals for each servo
+                    channel.</li>
+                <li>Servo positions are set to move the arm through a predefined mapping trajectory over the toilet seat
+                    surface.</li>
+                <li>The shoulder master and slave servos actuate together (slave mirrors master) to lift and lower the
+                    arm with balanced force.</li>
+                <li>Once positioned, the DC geared motor spins the rotating brush via the motor driver to perform
+                    cleaning.</li>
+                <li>The arm traverses the surface in a planned pattern designed to cover the target area.</li>
+            </ol>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Technologies
+                Used</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                ESP32-WROOM-32, PCA9685 PWM Driver, I&sup2;C Protocol, Servo Control, DC Geared Motor, DC Motor Driver,
+                3D Printing, Embedded C/C++, Robotics Arm Kinematics, Mechanical Prototyping.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Development
+                Status &amp; Future Improvements</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--primary-cyan); padding: 1rem 1.2rem; margin-bottom: 1.5rem;'>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom: 0;'>
+                    <li>3D-printed structural parts have been fabricated and assembled.</li>
+                    <li>ESP32 and PCA9685 integration is in active development for multi-servo coordination.</li>
+                    <li>Initial arm motion sequences are being defined and tested.</li>
+                    <li>Future improvements include closed-loop surface detection, sensor-guided path adjustment, and
+                        optimised cleaning coverage patterns.</li>
+                </ul>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-video' style='margin-right: 8px;'></i>Project Demonstration Videos</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;'>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle'
+                            style='color: var(--primary-cyan); margin-right: 6px;'></i>Cleaning Robotic Arm Demo</p>
+                    <video src='assets/projects/autonomous-toilet-seat-mapping-cleaning/cleaning-robotic-arm.mp4'
+                        controls preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/autonomous-toilet-seat-mapping-cleaning/cleaning-robotic-arm.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle' style='color: var(--primary-cyan); margin-right: 6px;'></i>Full
+                        System Overview</p>
+                    <video
+                        src='assets/projects/autonomous-toilet-seat-mapping-cleaning/Autonomous-Toilet-Seat-Mapping&amp;Robotic-Cleaning-System.mp4'
+                        controls preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/autonomous-toilet-seat-mapping-cleaning/Autonomous-Toilet-Seat-Mapping&amp;Robotic-Cleaning-System.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-images' style='margin-right: 8px;'></i>Project Photo</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;'>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/autonomous-toilet-seat-mapping-cleaning/robotic-arm.jpeg'
+                        alt='Robotic Toilet Seat Cleaning Arm'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+            </div>
+        </div>
+
+        <div id='esp32-underwater-rov-desc'>
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Project
+                Overview</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                The ESP32-Based Underwater ROV is a prototype underwater vehicle developed to explore custom EDF
+                (Electric Ducted Fan) propulsion in a submerged environment. The vehicle uses an ESP32 microcontroller,
+                two custom-designed and 3D-printed EDF propulsion units each driven by a BLDC motor, and two servo
+                motors for directional control. Control is handled via a wired joystick using a reused controller. Motor
+                operation, thrust generation in water, and directional movement have been tested. Electronics
+                waterproofing and full underwater validation remain as future development work.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Key Features
+            </h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>ESP32 microcontroller for vehicle control logic</li>
+                <li>Two custom 3D-printed EDF propulsion units with BLDC motors</li>
+                <li>Two servo motors for directional control</li>
+                <li>Wired joystick control using a reused controller</li>
+                <li>Thrust generation and directional movement tested in water</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Development
+                Status &amp; Future Work</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--primary-cyan); padding: 1rem 1.2rem; margin-bottom: 1.5rem;'>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom: 0;'>
+                    <li>Motor operation, thrust output, and directional movement have been successfully tested.</li>
+                    <li>Electronics waterproofing is not yet complete.</li>
+                    <li>Full sealed underwater validation remains as a future development phase.</li>
+                </ul>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Technologies
+                Used</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                ESP32, BLDC Motors, EDF Propulsion Design, 3D Printing, Servo Control, Wired Joystick Interface,
+                Embedded C/C++, Mechanical Prototyping.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-images' style='margin-right: 8px;'></i>Project Photos</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;'>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/esp32-underwater-rov/esp32-underwater-rov.jpeg'
+                        alt='ESP32 Underwater ROV — Front View'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/esp32-underwater-rov/esp32-underwater-rov2.jpeg'
+                        alt='ESP32 Underwater ROV — Detail View'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+            </div>
+        </div>
+
+        <div id='autonomous-multi-purpose-uav-desc'>
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Project
+                Overview</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                The Autonomous Multi-Purpose UAV is a versatile quadcopter engineering platform developed to study
+                autonomous flight, flight-controller tuning, GPS waypoint navigation, and multi-mission capabilities.
+                The project integrates two distinct flight-controller configurations: a Pixhawk 2.4.8 system running
+                ArduPilot with Mission Planner, and a RadioLink CrossFlight setup with dedicated radio-control and
+                telemetry. The platform explores real-world applications in agricultural mapping, surveillance, and
+                smart lightweight delivery.
+            </p>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Objectives
+            </h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>Design, assemble, and configure an autonomous multi-rotor aerial platform.</li>
+                <li>Implement and evaluate two flight-controller architectures: Pixhawk 2.4.8 (ArduPilot) and RadioLink
+                    CrossFlight.</li>
+                <li>Calibrate BLDC motors, electronic speed controllers (ESCs), and power distribution systems.</li>
+                <li>Achieve reliable manual flight, stable hovering (Loiter / AltHold), and autonomous waypoint
+                    missions.</li>
+                <li>Integrate high-precision GPS navigation, wireless telemetry, and automated landing sequences.</li>
+                <li>Explore aerial survey, agricultural field mapping, and smart delivery waypoint routing.</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Flight
+                Controller Configurations</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.5rem;'>
+                <p style='color: #fff; font-weight: 600; margin-bottom: 0.5rem;'><i class='fas fa-microchip'
+                        style='color: var(--primary-cyan); margin-right: 6px;'></i> Configuration 1: Pixhawk 2.4.8
+                    (ArduPilot &amp; Mission Planner)</p>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:disc; margin-bottom: 1rem;'>
+                    <li>32-bit advanced autopilot running open-source ArduPilot (ArduCopter) firmware.</li>
+                    <li>Integrated with Mission Planner Ground Control Station (GCS) for pre-flight calibration and
+                        waypoint mission programming.</li>
+                    <li>External high-precision GPS/Compass module on mast for accurate geomagnetic and satellite
+                        positioning.</li>
+                    <li>Bidirectional wireless telemetry radio for real-time inflight telemetry, battery voltage, and
+                        status monitoring.</li>
+                    <li>Flight modes verified: Stabilize, Altitude Hold, Loiter (GPS hold), Auto (waypoint mission), and
+                        Return-To-Launch (RTL).</li>
+                </ul>
+                <p style='color: #fff; font-weight: 600; margin-bottom: 0.5rem;'><i class='fas fa-broadcast-tower'
+                        style='color: var(--primary-cyan); margin-right: 6px;'></i> Configuration 2: RadioLink
+                    CrossFlight</p>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:disc; margin-bottom: 0;'>
+                    <li>Compact 32-bit flight controller with integrated vibration damping and high-sensitivity IMU
+                        sensors.</li>
+                    <li>Dedicated RadioLink radio-control receiver and telemetry module for responsive pilot feedback.
+                    </li>
+                    <li>Tuned for agile manual flight dynamics, responsive control loops, and GPS position stability.
+                    </li>
+                </ul>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Hardware
+                Components &amp; Technologies</h4>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom:1.5rem;'>
+                <li>Pixhawk 2.4.8 Autopilot / RadioLink CrossFlight Controller</li>
+                <li>High-thrust Brushless DC (BLDC) motors with matched propellers</li>
+                <li>30 A Electronic Speed Controllers (ESCs)</li>
+                <li>High-precision GPS &amp; Compass module mounted on an elevation mast</li>
+                <li>2.4 GHz Multi-channel Radio Transmitter &amp; Receiver</li>
+                <li>433 MHz / 915 MHz Long-range Wireless Telemetry Radios</li>
+                <li>High-discharge LiPo battery pack with dedicated Power Distribution Board (PDB) &amp; Current Sensor
+                </li>
+                <li>Reinforced quadcopter airframe with anti-vibration mounting</li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Flight
+                Capabilities &amp; Verified Testing</h4>
+            <div
+                style='background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--primary-cyan); padding: 1rem 1.2rem; margin-bottom: 1.5rem;'>
+                <ul
+                    style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:square; margin-bottom: 0;'>
+                    <li><strong>Manual Flight Operations:</strong> Successfully tested responsive flight control across
+                        Stabilize and Altitude Hold modes.</li>
+                    <li><strong>GPS Navigation &amp; Loiter:</strong> Verified stable position hold and drift rejection
+                        using multi-satellite GPS lock.</li>
+                    <li><strong>Autonomous Waypoint Missions:</strong> Pre-programmed autonomous route navigation
+                        executed successfully via Mission Planner.</li>
+                    <li><strong>Auto-Landing &amp; Failsafes:</strong> Automated descent, landing sequence, and motor
+                        disarm verified on physical flight tests.</li>
+                    <li><strong>Wireless Telemetry:</strong> Live stream of GPS coordinates, altitude, battery health,
+                        and flight attitude to GCS laptop.</li>
+                </ul>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Applications
+                &amp; Development Scope</h4>
+            <p style='color: var(--text-secondary); line-height:1.6; margin-bottom:1.5rem;'>
+                The platform is designed to support diverse aerial applications:
+            </p>
+            <ul
+                style='color: var(--text-secondary); line-height:1.6; padding-left:1.2rem; list-style-type:disc; margin-bottom:1.5rem;'>
+                <li><strong>Agricultural Field Mapping:</strong> Aerial grid mapping missions to capture field geometry
+                    and terrain data. <em>(Note: liquid chemical spraying mechanisms represent future phase
+                        development).</em></li>
+                <li><strong>Perimeter Surveillance:</strong> Autonomous aerial patrolling, waypoint inspection, and
+                    remote reconnaissance.</li>
+                <li><strong>Smart Delivery Routing:</strong> Exploration of GPS coordinate delivery corridors for
+                    emergency supplies or lightweight payloads. <em>(Note: automated payload release dispensers are
+                        under development for future phases).</em></li>
+            </ul>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-video' style='margin-right: 8px;'></i>Project Demonstration Videos</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 2rem;'>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle'
+                            style='color: var(--primary-cyan); margin-right: 6px;'></i>RadioLink CrossFlight Flight Test
+                    </p>
+                    <video src='assets/projects/autonomous-multi-purpose-uav/radiolink-flying.mp4' controls
+                        preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/autonomous-multi-purpose-uav/radiolink-flying.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle'
+                            style='color: var(--primary-cyan); margin-right: 6px;'></i>Autonomous Navigation &amp;
+                        Auto-Landing</p>
+                    <video src='assets/projects/autonomous-multi-purpose-uav/auto-landing.mp4' controls
+                        preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/autonomous-multi-purpose-uav/auto-landing.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+                <div
+                    style='background: rgba(0,0,0,0.4); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 12px; overflow: hidden; padding: 0.8rem;'>
+                    <p style='color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;'><i
+                            class='fas fa-play-circle'
+                            style='color: var(--primary-cyan); margin-right: 6px;'></i>Agricultural Survey &amp; Mapping
+                        Mission</p>
+                    <video src='assets/projects/autonomous-multi-purpose-uav/agricultural-mapping.mp4' controls
+                        preload='metadata' playsinline
+                        style='width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 8px; display: block; object-fit: contain;'></video>
+                    <button type="button" class="btn btn-outline"
+                        style="margin-top: 0.6rem; padding: 0.35rem 0.8rem; font-size: 0.75rem; border-color: rgba(0,240,255,0.3); width: 100%; justify-content: center;"
+                        onclick="switchModalVideo('assets/projects/autonomous-multi-purpose-uav/agricultural-mapping.mp4')"><i
+                            class="fas fa-expand-alt" style="margin-right: 5px;"></i>Play in Main Player</button>
+                </div>
+            </div>
+
+            <h4 style='color: var(--primary-cyan); margin-bottom:0.8rem; font-family:var(--font-heading);'><i
+                    class='fas fa-images' style='margin-right: 8px;'></i>Project Photographs &amp; Screenshots</h4>
+            <div
+                style='display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;'>
+                <div style='border-radius: 10px; overflow: hidden; border: 1px solid rgba(0, 240, 255, 0.2); aspect-ratio: 4/3; background: #050505; cursor: pointer;'
+                    onclick='openCertModal(this.querySelector("img").src)' title='Click to view fullscreen'>
+                    <img src='assets/projects/autonomous-multi-purpose-uav/pixahawk-drone.jpeg'
+                        alt='Pixhawk 2.4.8 Quadcopter Build'
+                        style='width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;'
+                        onmouseover='this.style.transform="scale(1.08)"' onmouseout='this.style.transform="scale(1)"'>
+                </div>
+            </div>
+        </div>
+
         <div id='techbot-arm-controller-app-desc'>
             <h4 style='color: var(--primary-cyan); margin-bottom:0.5rem; font-family:var(--font-heading);'>Project
                 Overview</h4>
@@ -906,7 +1629,7 @@
         </div>
 
         <!-- Subsection A: Internship & Industrial Training -->
-        <h3 style="margin: 3rem 0 1.5rem; color: var(--primary-cyan); font-family: var(--font-heading);">Internship &
+        <h3 id="internship-certificates" style="margin: 3rem 0 1.5rem; color: var(--primary-cyan); font-family: var(--font-heading);">Internship &
             Industrial Training</h3>
         <div class="cert-grid">
             <div class="cert-card reveal">
@@ -943,11 +1666,28 @@
                             class="fas fa-file-pdf" style="margin-right: 5px;"></i> Download PDF</a>
                 </div>
             </div>
+            <div class="cert-card reveal">
+                <img src="assets/certificates/Internship Completion Certificate_Gautam Saw (1).jpg" alt="Adroidex"
+                    class="cert-preview" style="cursor: pointer; transition: transform 0.3s ease;"
+                    onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+                    onclick="openCertModal(this.src)" title="Click to view fullscreen">
+                <h3>Adroidex — Internship Completion Certificate</h3>
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <a href="assets/certificates/Internship Completion Certificate_Gautam Saw (1).pdf" target="_blank"
+                        class="btn btn-outline"
+                        style="padding: 0.5rem 1rem; font-size: 0.75rem; flex: 1; justify-content: center;"><i
+                            class="fas fa-search-plus" style="margin-right: 5px;"></i> View</a>
+                    <a href="assets/certificates/Internship Completion Certificate_Gautam Saw (1).pdf"
+                        download="Adroidex_Internship_Completion_Certificate_Gautam_Saw.pdf" class="btn btn-primary"
+                        style="padding: 0.5rem 1rem; font-size: 0.75rem; flex: 1; justify-content: center;"><i
+                            class="fas fa-file-pdf" style="margin-right: 5px;"></i> Download PDF</a>
+                </div>
+            </div>
         </div>
 
-        <!-- Subsection B: Competition & Achievement -->
-        <h3 style="margin: 5rem 0 1.5rem; color: var(--primary-cyan); font-family: var(--font-heading);">Competition &
-            Achievement Certificates</h3>
+        <!-- Subsection B: Competition & Achievements -->
+        <h3 id="competition-achievements" style="margin: 5rem 0 1.5rem; color: var(--primary-cyan); font-family: var(--font-heading);">Competition &
+            Achievements</h3>
         <div class="cert-grid">
             <div class="cert-card reveal">
                 <img src="assets/certificates/DTU_1ST_LFR.jpg" alt="DTU" class="cert-preview"
@@ -1125,21 +1865,26 @@
     <section id="contact" class="section">
         <div class="card reveal"
             style="background: linear-gradient(135deg, #121215 0%, #050505 100%); border-left: 6px solid var(--primary-cyan);">
-            <div style="text-align: center; margin-bottom: 3rem; padding: 0 1rem;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;" class="mobile-h2">Let's <span
-                        class="gradient-text">Collaborate</span>
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Let's <span class="gradient-text">Collaborate</span>
                 </h2>
-                <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.6;">Seeking opportunities in
-                    embedded systems, drone technology,
+                <p style="color: var(--text-secondary);">Seeking opportunities in embedded systems, drone technology,
                     and high-precision robotics development.</p>
             </div>
 
-            <div class="responsive-grid"
+            <div
                 style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 4rem; text-align: left;">
 
                 <!-- Left: Social & Direct Links -->
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                     <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 1rem;">Connect Directly</h3>
+
+                    <!-- Phone / Direct Call -->
+                    <a href="tel:+919334053907" class="btn"
+                        style="background: rgba(0, 240, 255, 0.1); border: 1px solid rgba(0, 240, 255, 0.3); color: #fff; border-radius: 12px; padding: 1rem 1.5rem; justify-content: flex-start;">
+                        <i class="fas fa-phone-alt" style="color: var(--primary-cyan); margin-right: 15px; font-size: 1.4rem;"></i>
+                        +91 9334053907 (Direct Call)
+                    </a>
 
                     <!-- WhatsApp -->
                     <a href="https://wa.me/919334053907" target="_blank" class="btn"
@@ -1174,23 +1919,18 @@
                 <div
                     style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 2rem;">
                     <h3 style="color: #fff; font-size: 1.5rem; margin-bottom: 1.5rem;">Send a Message</h3>
-                    <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST"
+                    <form action="mailto:gautam2020electronic@gmail.com" method="post" enctype="text/plain"
                         style="display: flex; flex-direction: column; gap: 1rem;">
-                        <!-- Formspree Configuration -->
-                        <input type="text" name="_gotcha" style="display:none">
-                        <input type="hidden" name="_subject" value="New Message from Portfolio">
-
-
                         <div>
-                            <input type="text" name="name" placeholder="Your Name" required autocomplete="name"
+                            <input type="text" name="Name" placeholder="Your Name" required
                                 style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; color: #fff; outline: none; font-family: 'Inter', sans-serif;">
                         </div>
                         <div>
-                            <input type="email" name="email" placeholder="Your Email" required autocomplete="email"
+                            <input type="email" name="Email" placeholder="Your Email" required
                                 style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; color: #fff; outline: none; font-family: 'Inter', sans-serif;">
                         </div>
                         <div>
-                            <textarea name="message" placeholder="Your Message" rows="4" required autocomplete="off"
+                            <textarea name="Message" placeholder="Your Message" rows="4" required
                                 style="width: 100%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; color: #fff; outline: none; font-family: 'Inter', sans-serif; resize: vertical;"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary"
@@ -1202,6 +1942,73 @@
             </div>
         </div>
     </section>
+
+    <!-- Skills in Action Section -->
+    <section id="skills-in-action" class="section" style="background-color: var(--bg-surface);">
+        <a id="work-showcase" style="position: absolute; top: -80px; visibility: hidden;" aria-hidden="true"></a>
+        <a id="workshop" style="position: absolute; top: -80px; visibility: hidden;" aria-hidden="true"></a>
+        <div class="section-header reveal">
+            <h2>Skills in <span class="gradient-text">Action</span></h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div id="workshop-grid" class="workshop-grid">
+            <!-- Video cards injected dynamically by loadWorkshopGallery() -->
+            <p style="color:var(--text-secondary);text-align:center;grid-column:1/-1;padding:3rem 0;">
+                <i class="fas fa-spinner fa-spin"
+                    style="font-size:2rem;color:var(--primary-cyan);display:block;margin-bottom:1rem;"></i>
+                Loading videos&hellip;
+            </p>
+        </div>
+    </section>
+
+    <!-- Workshop Video Player Modal -->
+    <div id="workshop-modal">
+        <button onclick="closeWorkshopModal()"
+            style="position: fixed; top: 1.5rem; right: 2rem; width: 45px; height: 45px; border-radius: 50%; font-size: 2rem; color: #fff; background: rgba(18, 18, 21, 0.6); border: 1px solid rgba(0, 240, 255, 0.4); cursor: pointer; z-index: 10005; backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;"
+            onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 25px rgba(0, 240, 255, 0.6)'; this.style.background='rgba(0, 240, 255, 0.1)';"
+            onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 0 15px rgba(0, 240, 255, 0.2)'; this.style.background='rgba(18, 18, 21, 0.6)';"
+            aria-label="Close Player">&times;</button>
+        <div class="workshop-player-container" id="workshop-player-wrapper">
+            <div id="workshop-yt-iframe-container">
+                <div id="workshop-yt-iframe"></div>
+            </div>
+            <!-- Custom Player Controls Bar -->
+            <div class="workshop-controls" id="workshop-controls">
+                <div class="ws-scrubber-container" id="ws-scrubber-container">
+                    <div class="ws-progress-bar" id="ws-progress-bar"></div>
+                    <input type="range" class="ws-scrubber-input" id="ws-scrubber-input" min="0" max="100" value="0" step="0.1" aria-label="Seek Video">
+                </div>
+                <div class="ws-controls-row">
+                    <div class="ws-ctrl-group">
+                        <button class="ws-ctrl-btn" onclick="prevWorkshopVideo()" title="Previous Video" aria-label="Previous Video"><i class="fas fa-backward-step"></i></button>
+                        <button id="ws-play-pause-btn" class="ws-ctrl-btn" onclick="toggleWorkshopPlay()" title="Play / Pause (Space)" aria-label="Play / Pause"><i class="fas fa-play"></i></button>
+                        <button class="ws-ctrl-btn" onclick="nextWorkshopVideo()" title="Next Video" aria-label="Next Video"><i class="fas fa-forward-step"></i></button>
+                        <span id="ws-time-display" class="ws-time-display">0:00 / 0:00</span>
+                    </div>
+                    <div class="ws-ctrl-group">
+                        <div class="ws-volume-container">
+                            <button id="ws-mute-btn" class="ws-ctrl-btn" onclick="toggleWorkshopMute()" title="Mute / Unmute (M)" aria-label="Mute / Unmute"><i class="fas fa-volume-xmark"></i></button>
+                            <input id="ws-volume-slider" type="range" class="ws-volume-slider" min="0" max="100" value="100" oninput="setWorkshopVolume(this.value)" aria-label="Volume">
+                        </div>
+                        <div class="ws-speed-wrapper">
+                            <button id="ws-speed-btn" class="ws-speed-btn" onclick="toggleSpeedMenu(event)" title="Playback Speed">1x</button>
+                            <div id="ws-speed-menu" class="ws-speed-menu">
+                                <button class="ws-speed-opt" onclick="setWorkshopSpeed(0.5)">0.5x</button>
+                                <button class="ws-speed-opt" onclick="setWorkshopSpeed(0.75)">0.75x</button>
+                                <button class="ws-speed-opt active" onclick="setWorkshopSpeed(1)">1x</button>
+                                <button class="ws-speed-opt" onclick="setWorkshopSpeed(1.25)">1.25x</button>
+                                <button class="ws-speed-opt" onclick="setWorkshopSpeed(1.5)">1.5x</button>
+                                <button class="ws-speed-opt" onclick="setWorkshopSpeed(2)">2x</button>
+                            </div>
+                        </div>
+                        <button id="ws-pip-btn" class="ws-ctrl-btn" onclick="toggleWorkshopPip()" title="Picture in Picture" aria-label="Picture in Picture" style="display: none;"><i class="fas fa-arrow-up-right-from-square"></i></button>
+                        <button id="ws-fullscreen-btn" class="ws-ctrl-btn" onclick="toggleWorkshopFullscreen()" title="Fullscreen (F)" aria-label="Fullscreen"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Project Modal -->
     <div id="project-modal"
@@ -1332,6 +2139,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="script.js"></script>
     <script>
         function openLogoModal() {

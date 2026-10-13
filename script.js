@@ -1,3 +1,554 @@
+// ── Workshop Native Video Gallery & Custom Player ───────────────────────────
+let workshopVideos = [];
+let workshopCurrentIndex = 0;
+let ytWorkshopPlayer = null;
+let ytWorkshopIsReady = false;
+let workshopProgressTimer = null;
+let workshopControlsTimer = null;
+let workshopKeyboardHandler = null;
+
+function loadWorkshopGallery() {
+    const grid = document.getElementById('workshop-grid') || document.getElementById('work-showcase-grid');
+    if (!grid) return;
+
+    fetch('assets/youtube-videos.json?v=' + Date.now())
+        .then(function(r) {
+            if (!r.ok) throw new Error('Network response not ok');
+            return r.json();
+        })
+        .then(function(data) {
+            const raw = data.videos || [];
+            // De-duplicate and preserve newest-first order
+            const seen = new Set();
+            workshopVideos = [];
+            for (let i = 0; i < raw.length; i++) {
+                if (raw[i].id && !seen.has(raw[i].id)) {
+                    seen.add(raw[i].id);
+                    workshopVideos.push(raw[i]);
+                }
+            }
+
+            if (workshopVideos.length === 0) {
+                grid.innerHTML =
+                    '<p style="color:var(--text-secondary);text-align:center;grid-column:1/-1;padding:3rem 0;">' +
+                    '<i class="fas fa-video-slash" style="font-size:2.5rem;color:var(--primary-cyan);display:block;margin-bottom:1rem;"></i>' +
+                    'No videos currently available.' +
+                    '</p>';
+                return;
+            }
+
+            renderWorkshopGallery();
+        })
+        .catch(function(err) {
+            console.log('Workshop: Notice - using fallback manifest', err);
+            // Fallback: try loading media-manifest if youtube-videos is not present yet
+            if (typeof loadWorkShowcaseFallback === 'function') {
+                loadWorkShowcaseFallback();
+            }
+        });
+}
+
+function renderWorkshopGallery() {
+    const grid = document.getElementById('workshop-grid') || document.getElementById('work-showcase-grid');
+    if (!grid) return;
+
+    grid.innerHTML = '';
+
+    for (let i = 0; i < workshopVideos.length; i++) {
+        const item = workshopVideos[i];
+        if (!item || !item.id) continue;
+
+        const card = document.createElement('div');
+        card.className = 'workshop-card reveal active';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('aria-label', 'Play video ' + (i + 1) + (item.title ? ': ' + item.title : ''));
+        card.dataset.index = i;
+        card.dataset.id = item.id;
+
+        // Clean high-res thumbnail with crisp fallback
+        const img = document.createElement('img');
+        img.src = item.thumbnail || ('https://i.ytimg.com/vi/' + item.id + '/hqdefault.jpg');
+        img.alt = item.title || 'Video thumbnail';
+        img.loading = 'lazy';
+        img.onerror = function() {
+            if (this.src.indexOf('hqdefault.jpg') === -1) {
+                this.src = 'https://i.ytimg.com/vi/' + item.id + '/hqdefault.jpg';
+            }
+        };
+        card.appendChild(img);
+
+        // Center glowing Play Overlay
+        const overlay = document.createElement('div');
+        overlay.className = 'play-overlay';
+        overlay.innerHTML = '<div class="play-btn"><i class="fas fa-play" style="margin-left: 3px;"></i></div>';
+        card.appendChild(overlay);
+
+        // Click & keyboard handlers
+        const curIdx = i;
+        card.onclick = function() {
+            openWorkshopModal(item.id, curIdx);
+        };
+        card.onkeydown = function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openWorkshopModal(item.id, curIdx);
+            }
+        };
+
+        grid.appendChild(card);
+    }
+
+    if (typeof initReveal === 'function') initReveal();
+    if (window.location.hash) {
+        setTimeout(function () {
+            if (typeof handleDirectHashNavigation === 'function') {
+                handleDirectHashNavigation(false);
+            }
+        }, 120);
+    }
+}
+
+function renderWorkshopBatch() {
+    renderWorkshopGallery();
+}
+
+// ── YouTube IFrame API & Player Lifecycle ───────────────────────────────────
+function onYouTubeIframeAPIReady() {
+    ytWorkshopIsReady = true;
+}
+
+function openWorkshopModal(videoId, index) {
+    workshopCurrentIndex = typeof index === 'number' ? index : 0;
+    const modal = document.getElementById('workshop-modal');
+    if (!modal) return;
+
+    // Pause background portfolio audio or other playing videos
+    if (modalBgAudio) {
+        modalBgAudio.pause();
+    }
+
+    modal.style.display = 'flex';
+    setTimeout(function() {
+        modal.style.opacity = '1';
+        const wrapper = document.getElementById('workshop-player-wrapper');
+        if (wrapper) wrapper.style.transform = 'translateY(0)';
+    }, 10);
+
+    initOrPlayWorkshopVideo(videoId);
+    initWorkshopControlsEvents();
+}
+
+function initOrPlayWorkshopVideo(videoId) {
+    const container = document.getElementById('workshop-yt-iframe-container');
+    if (!container) return;
+
+    resetWorkshopUIState();
+
+    if (ytWorkshopPlayer && typeof ytWorkshopPlayer.loadVideoById === 'function') {
+        ytWorkshopPlayer.loadVideoById({
+            videoId: videoId,
+            startSeconds: 0
+        });
+        // Respect no autoplay with sound: keep muted initially
+        ytWorkshopPlayer.mute();
+        updateMuteButtonUI(true);
+    } else {
+        container.innerHTML = '<div id="workshop-yt-iframe"></div>';
+        if (window.YT && window.YT.Player) {
+            ytWorkshopPlayer = new YT.Player('workshop-yt-iframe', {
+                videoId: videoId,
+                playerVars: {
+                    autoplay: 1,
+                    mute: 1,
+                    controls: 0,
+                    modestbranding: 1,
+                    rel: 0,
+                    fs: 0,
+                    iv_load_policy: 3,
+                    playsinline: 1,
+                    enablejsapi: 1,
+                    disablekb: 1,
+                    origin: window.location.origin
+                },
+                events: {
+                    onReady: function(e) {
+                        ytWorkshopIsReady = true;
+                        e.target.mute();
+                        e.target.playVideo();
+                        updateMuteButtonUI(true);
+                    },
+                    onStateChange: onWorkshopPlayerStateChange,
+                    onError: onWorkshopPlayerError
+                }
+            });
+        }
+    }
+
+    startWorkshopProgressTracker();
+}
+
+function closeWorkshopModal() {
+    const modal = document.getElementById('workshop-modal');
+    if (!modal) return;
+
+    modal.style.opacity = '0';
+    const wrapper = document.getElementById('workshop-player-wrapper');
+    if (wrapper) wrapper.style.transform = 'translateY(20px)';
+
+    if (ytWorkshopPlayer && typeof ytWorkshopPlayer.pauseVideo === 'function') {
+        try { ytWorkshopPlayer.pauseVideo(); } catch(e) {}
+    }
+
+    stopWorkshopProgressTracker();
+    removeWorkshopKeyboardHandler();
+
+    const speedMenu = document.getElementById('ws-speed-menu');
+    if (speedMenu) speedMenu.classList.remove('show');
+
+    setTimeout(function() {
+        modal.style.display = 'none';
+    }, 300);
+}
+
+function onWorkshopPlayerStateChange(event) {
+    const playBtn = document.getElementById('ws-play-pause-btn');
+    if (!playBtn) return;
+
+    if (event.data === YT.PlayerState.PLAYING) {
+        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        resetControlsInactivity();
+    } else if (event.data === YT.PlayerState.PAUSED) {
+        playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        showWorkshopControls();
+    } else if (event.data === YT.PlayerState.ENDED) {
+        playBtn.innerHTML = '<i class="fas fa-rotate-right"></i>';
+        showWorkshopControls();
+    }
+}
+
+function onWorkshopPlayerError(event) {
+    console.log('Workshop player notice (video unavailable or restricted):', event.data);
+    const container = document.getElementById('workshop-yt-iframe-container');
+    if (container) {
+        container.innerHTML =
+            '<div style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;color:var(--text-secondary);padding:2rem;text-align:center;">' +
+            '<i class="fas fa-circle-exclamation" style="font-size:2.5rem;color:var(--primary-cyan);margin-bottom:1rem;"></i>' +
+            '<p style="font-size:0.95rem;margin-bottom:1.5rem;color:#fff;">This video is currently unavailable.</p>' +
+            '<button class="workshop-load-more-btn" onclick="nextWorkshopVideo()" style="padding:0.6rem 1.4rem;font-size:0.85rem;"><i class="fas fa-forward-step"></i> Next Video</button>' +
+            '</div>';
+    }
+}
+
+// ── Custom Video Controls Logic ─────────────────────────────────────────────
+function toggleWorkshopPlay() {
+    if (!ytWorkshopPlayer || typeof ytWorkshopPlayer.getPlayerState !== 'function') return;
+    const state = ytWorkshopPlayer.getPlayerState();
+    if (state === YT.PlayerState.PLAYING) {
+        ytWorkshopPlayer.pauseVideo();
+    } else {
+        ytWorkshopPlayer.playVideo();
+    }
+}
+
+function prevWorkshopVideo() {
+    if (workshopVideos.length === 0) return;
+    workshopCurrentIndex = (workshopCurrentIndex - 1 + workshopVideos.length) % workshopVideos.length;
+    const nextItem = workshopVideos[workshopCurrentIndex];
+    if (nextItem) initOrPlayWorkshopVideo(nextItem.id);
+}
+
+function nextWorkshopVideo() {
+    if (workshopVideos.length === 0) return;
+    workshopCurrentIndex = (workshopCurrentIndex + 1) % workshopVideos.length;
+    const nextItem = workshopVideos[workshopCurrentIndex];
+    if (nextItem) initOrPlayWorkshopVideo(nextItem.id);
+}
+
+function toggleWorkshopMute() {
+    if (!ytWorkshopPlayer || typeof ytWorkshopPlayer.isMuted !== 'function') return;
+    const isMuted = ytWorkshopPlayer.isMuted();
+    if (isMuted) {
+        ytWorkshopPlayer.unMute();
+        updateMuteButtonUI(false);
+        const slider = document.getElementById('ws-volume-slider');
+        if (slider && parseInt(slider.value, 10) === 0) {
+            slider.value = 100;
+            ytWorkshopPlayer.setVolume(100);
+        }
+    } else {
+        ytWorkshopPlayer.mute();
+        updateMuteButtonUI(true);
+    }
+}
+
+function setWorkshopVolume(val) {
+    if (!ytWorkshopPlayer || typeof ytWorkshopPlayer.setVolume !== 'function') return;
+    const vol = parseInt(val, 10);
+    ytWorkshopPlayer.setVolume(vol);
+    if (vol === 0) {
+        ytWorkshopPlayer.mute();
+        updateMuteButtonUI(true);
+    } else {
+        if (ytWorkshopPlayer.isMuted()) ytWorkshopPlayer.unMute();
+        updateMuteButtonUI(false);
+    }
+}
+
+function updateMuteButtonUI(isMuted) {
+    const btn = document.getElementById('ws-mute-btn');
+    if (!btn) return;
+    if (isMuted) {
+        btn.innerHTML = '<i class="fas fa-volume-xmark"></i>';
+    } else {
+        btn.innerHTML = '<i class="fas fa-volume-high"></i>';
+    }
+}
+
+function toggleSpeedMenu(event) {
+    if (event) event.stopPropagation();
+    const menu = document.getElementById('ws-speed-menu');
+    if (menu) menu.classList.toggle('show');
+}
+
+function setWorkshopSpeed(rate) {
+    if (ytWorkshopPlayer && typeof ytWorkshopPlayer.setPlaybackRate === 'function') {
+        ytWorkshopPlayer.setPlaybackRate(rate);
+    }
+    const btn = document.getElementById('ws-speed-btn');
+    if (btn) btn.textContent = rate + 'x';
+
+    const opts = document.querySelectorAll('.ws-speed-opt');
+    opts.forEach(function(opt) {
+        if (opt.textContent.trim() === rate + 'x') {
+            opt.classList.add('active');
+        } else {
+            opt.classList.remove('active');
+        }
+    });
+
+    const menu = document.getElementById('ws-speed-menu');
+    if (menu) menu.classList.remove('show');
+}
+
+function toggleWorkshopFullscreen() {
+    const wrapper = document.getElementById('workshop-player-wrapper');
+    const btn = document.getElementById('ws-fullscreen-btn');
+    if (!wrapper) return;
+
+    if (!document.fullscreenElement) {
+        if (wrapper.requestFullscreen) {
+            wrapper.requestFullscreen();
+        } else if (wrapper.webkitRequestFullscreen) {
+            wrapper.webkitRequestFullscreen();
+        }
+        if (btn) btn.innerHTML = '<i class="fas fa-compress"></i>';
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+        if (btn) btn.innerHTML = '<i class="fas fa-expand"></i>';
+    }
+}
+
+document.addEventListener('fullscreenchange', function() {
+    const btn = document.getElementById('ws-fullscreen-btn');
+    if (!btn) return;
+    if (document.fullscreenElement) {
+        btn.innerHTML = '<i class="fas fa-compress"></i>';
+    } else {
+        btn.innerHTML = '<i class="fas fa-expand"></i>';
+    }
+});
+
+function toggleWorkshopPip() {
+    if ('documentPictureInPicture' in window) {
+        window.documentPictureInPicture.requestWindow({ width: 360, height: 640 })
+            .then(function(pipWin) {
+                const wrapper = document.getElementById('workshop-player-wrapper');
+                if (wrapper) pipWin.document.body.appendChild(wrapper);
+                pipWin.addEventListener('unload', function() {
+                    const modal = document.getElementById('workshop-modal');
+                    if (modal && wrapper) modal.appendChild(wrapper);
+                });
+            })
+            .catch(function(e) {
+                console.log('PiP error:', e);
+            });
+    }
+}
+
+function formatTime(seconds) {
+    if (!seconds || isNaN(seconds)) return '0:00';
+    const s = Math.floor(seconds);
+    const m = Math.floor(s / 60);
+    const remS = s % 60;
+    return m + ':' + (remS < 10 ? '0' : '') + remS;
+}
+
+function startWorkshopProgressTracker() {
+    stopWorkshopProgressTracker();
+    const scrubberInput = document.getElementById('ws-scrubber-input');
+    const progressBar = document.getElementById('ws-progress-bar');
+    const timeDisplay = document.getElementById('ws-time-display');
+
+    if (scrubberInput) {
+        scrubberInput.oninput = function() {
+            if (!ytWorkshopPlayer || typeof ytWorkshopPlayer.getDuration !== 'function') return;
+            const duration = ytWorkshopPlayer.getDuration() || 0;
+            const targetTime = (parseFloat(this.value) / 100) * duration;
+            ytWorkshopPlayer.seekTo(targetTime, true);
+        };
+    }
+
+    workshopProgressTimer = setInterval(function() {
+        if (!ytWorkshopPlayer || typeof ytWorkshopPlayer.getCurrentTime !== 'function') return;
+        const cur = ytWorkshopPlayer.getCurrentTime() || 0;
+        const dur = ytWorkshopPlayer.getDuration() || 0;
+
+        if (dur > 0) {
+            const pct = (cur / dur) * 100;
+            if (progressBar) progressBar.style.width = pct + '%';
+            if (scrubberInput && !scrubberInput.matches(':active')) scrubberInput.value = pct;
+            if (timeDisplay) timeDisplay.textContent = formatTime(cur) + ' / ' + formatTime(dur);
+        }
+    }, 250);
+}
+
+function stopWorkshopProgressTracker() {
+    if (workshopProgressTimer) {
+        clearInterval(workshopProgressTimer);
+        workshopProgressTimer = null;
+    }
+}
+
+function resetWorkshopUIState() {
+    const playBtn = document.getElementById('ws-play-pause-btn');
+    if (playBtn) playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    const progressBar = document.getElementById('ws-progress-bar');
+    if (progressBar) progressBar.style.width = '0%';
+    const scrubberInput = document.getElementById('ws-scrubber-input');
+    if (scrubberInput) scrubberInput.value = 0;
+    const timeDisplay = document.getElementById('ws-time-display');
+    if (timeDisplay) timeDisplay.textContent = '0:00 / 0:00';
+    const speedBtn = document.getElementById('ws-speed-btn');
+    if (speedBtn) speedBtn.textContent = '1x';
+    const speedOpts = document.querySelectorAll('.ws-speed-opt');
+    speedOpts.forEach(function(opt) {
+        opt.classList.toggle('active', opt.textContent.trim() === '1x');
+    });
+
+    // PiP feature detection
+    const pipBtn = document.getElementById('ws-pip-btn');
+    if (pipBtn) {
+        pipBtn.style.display = ('documentPictureInPicture' in window) ? 'flex' : 'none';
+    }
+}
+
+function initWorkshopControlsEvents() {
+    removeWorkshopKeyboardHandler();
+
+    workshopKeyboardHandler = function(e) {
+        const modal = document.getElementById('workshop-modal');
+        if (!modal || modal.style.display !== 'flex') return;
+
+        if (e.key === ' ' || e.key === 'k' || e.key === 'K') {
+            e.preventDefault();
+            toggleWorkshopPlay();
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            if (ytWorkshopPlayer && typeof ytWorkshopPlayer.getCurrentTime === 'function') {
+                const cur = ytWorkshopPlayer.getCurrentTime();
+                ytWorkshopPlayer.seekTo(Math.max(0, cur - 5), true);
+            }
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            if (ytWorkshopPlayer && typeof ytWorkshopPlayer.getCurrentTime === 'function') {
+                const cur = ytWorkshopPlayer.getCurrentTime();
+                ytWorkshopPlayer.seekTo(cur + 5, true);
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (ytWorkshopPlayer && typeof ytWorkshopPlayer.getVolume === 'function') {
+                const vol = Math.min(100, ytWorkshopPlayer.getVolume() + 10);
+                setWorkshopVolume(vol);
+                const slider = document.getElementById('ws-volume-slider');
+                if (slider) slider.value = vol;
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (ytWorkshopPlayer && typeof ytWorkshopPlayer.getVolume === 'function') {
+                const vol = Math.max(0, ytWorkshopPlayer.getVolume() - 10);
+                setWorkshopVolume(vol);
+                const slider = document.getElementById('ws-volume-slider');
+                if (slider) slider.value = vol;
+            }
+        } else if (e.key === 'm' || e.key === 'M') {
+            e.preventDefault();
+            toggleWorkshopMute();
+        } else if (e.key === 'f' || e.key === 'F') {
+            e.preventDefault();
+            toggleWorkshopFullscreen();
+        } else if (e.key === 'Escape') {
+            e.preventDefault();
+            closeWorkshopModal();
+        }
+    };
+
+    document.addEventListener('keydown', workshopKeyboardHandler);
+
+    // Auto-hide controls when mouse is idle inside player
+    const wrapper = document.getElementById('workshop-player-wrapper');
+    if (wrapper) {
+        wrapper.onmousemove = resetControlsInactivity;
+        wrapper.ontouchstart = resetControlsInactivity;
+    }
+
+    // Close speed menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.ws-speed-wrapper')) {
+            const menu = document.getElementById('ws-speed-menu');
+            if (menu) menu.classList.remove('show');
+        }
+    });
+}
+
+function removeWorkshopKeyboardHandler() {
+    if (workshopKeyboardHandler) {
+        document.removeEventListener('keydown', workshopKeyboardHandler);
+        workshopKeyboardHandler = null;
+    }
+}
+
+function resetControlsInactivity() {
+    showWorkshopControls();
+    if (workshopControlsTimer) clearTimeout(workshopControlsTimer);
+    workshopControlsTimer = setTimeout(function() {
+        if (ytWorkshopPlayer && typeof ytWorkshopPlayer.getPlayerState === 'function') {
+            if (ytWorkshopPlayer.getPlayerState() === YT.PlayerState.PLAYING) {
+                hideWorkshopControls();
+            }
+        }
+    }, 2800);
+}
+
+function showWorkshopControls() {
+    const controls = document.getElementById('workshop-controls');
+    if (controls) controls.classList.remove('controls-hidden');
+}
+
+function hideWorkshopControls() {
+    const controls = document.getElementById('workshop-controls');
+    const menu = document.getElementById('ws-speed-menu');
+    if (menu && menu.classList.contains('show')) return; // keep visible if speed menu is open
+    if (controls) controls.classList.add('controls-hidden');
+}
+
+// Fallback loader if ever needed
+function loadWorkShowcase() {
+    loadWorkshopGallery();
+}
+
 // Global variables
 let modalBgAudio = null;
 let galleryInterval = null;
@@ -21,7 +572,6 @@ function openModal(title, mediaSrc, desc, tags, displayType = 'youtube-link') {
     const modalYoutubeLink = document.getElementById('modal-youtube-link');
     
     if (!modal) return;
-    if (modalYoutubeLink) modalYoutubeLink.style.display = 'inline-flex';
 
     // Get Audio instance
     const audio = getAudioInstance();
@@ -46,9 +596,12 @@ function openModal(title, mediaSrc, desc, tags, displayType = 'youtube-link') {
                 video.onplay = () => { audio.play().catch(e => console.log('Audio play failed')); };
                 video.onpause = () => { audio.pause(); };
                 
-                // Keep video volume at 0 permanently
-                video.volume = 0;
-                video.onvolumechange = () => { video.volume = 0; };
+                // Allow sound controls; pause background audio if video is unmuted
+                video.onvolumechange = () => {
+                    if (!video.muted && video.volume > 0) {
+                        audio.pause();
+                    }
+                };
 
                 // Initial playback for local video
                 audio.play().catch(e => {
@@ -59,7 +612,6 @@ function openModal(title, mediaSrc, desc, tags, displayType = 'youtube-link') {
         if (modalYoutubeLink) modalYoutubeLink.style.display = 'none';
         
     } else if (displayType === 'image-gallery') {
-        if (modalYoutubeLink) modalYoutubeLink.style.display = 'none';
         if (Array.isArray(mediaSrc) && mediaSrc.length > 0) {
             let galleryHTML = '<div class="gallery-slider" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; border-radius: 20px 20px 0 0; overflow: hidden;">';
             mediaSrc.forEach((src, idx) => {
@@ -149,6 +701,16 @@ function closeModal() {
     }, 300);
 }
 
+function switchModalVideo(src) {
+    const container = document.getElementById('modal-video-container');
+    if (!container) return;
+    const audio = getAudioInstance();
+    if (audio) audio.pause();
+    container.innerHTML = `<video src="${src}" controls autoplay playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: 20px 20px 0 0;"></video>`;
+    const modal = document.getElementById('project-modal');
+    if (modal) modal.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 function extractYouTubeId(url) {
     let videoId = '';
     if (url.includes('youtube.com/shorts/')) videoId = url.split('youtube.com/shorts/')[1].split('?')[0];
@@ -211,53 +773,80 @@ const initReveal = () => {
 
 const initNavbar = () => {
     const navbar = document.querySelector('.navbar');
-    const navToggle = document.getElementById('nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
     if (!navbar) return;
-
-    if (navToggle && navLinks) {
-        navToggle.onclick = () => {
-            navLinks.classList.toggle('active');
-            const icon = navToggle.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        };
-
-        // Close menu when link is clicked
-        const links = navLinks.querySelectorAll('a');
-        links.forEach(link => {
-            link.onclick = () => {
-                navLinks.classList.remove('active');
-                const icon = navToggle.querySelector('i');
-                icon.classList.replace('fa-times', 'fa-bars');
-            };
-        });
-    }
-
     window.addEventListener('scroll', () => {
         if (window.scrollY > 80) {
             navbar.style.padding = '0.8rem 8%'; navbar.style.background = 'rgba(5, 5, 5, 0.95)'; navbar.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-            if (window.innerWidth <= 992) navbar.style.padding = '1rem 5%';
         } else {
             navbar.style.padding = '1.2rem 8%'; navbar.style.background = 'rgba(5, 5, 5, 0.8)'; navbar.style.boxShadow = 'none';
-            if (window.innerWidth <= 992) navbar.style.padding = '1rem 5%';
         }
     });
+};
+
+const getTargetFromHash = (hashStr) => {
+    if (!hashStr || hashStr === '#' || hashStr === '#!') return null;
+    try {
+        const id = decodeURIComponent(hashStr.replace(/^#/, ''));
+        return document.getElementById(id) || document.querySelector(hashStr);
+    } catch (e) {
+        return null;
+    }
+};
+
+const getNavOffset = () => {
+    const navbar = document.querySelector('.navbar');
+    return navbar ? navbar.offsetHeight : 85;
+};
+
+const scrollToSection = (target, updateHash = true, smooth = true) => {
+    if (!target) return;
+    const navOffset = getNavOffset();
+    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = Math.max(0, Math.round(elementPosition - navOffset - 10));
+
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: smooth ? 'smooth' : 'auto'
+    });
+
+    if (updateHash && target.id) {
+        if (window.history && window.history.pushState) {
+            window.history.pushState(null, '', '#' + target.id);
+        } else {
+            window.location.hash = target.id;
+        }
+    }
 };
 
 const initSmoothScroll = () => {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === '#!') return;
+            const target = getTargetFromHash(href);
+            if (target) {
+                e.preventDefault();
+                scrollToSection(target, true, true);
+            }
         });
     });
 };
+
+const handleDirectHashNavigation = (smooth = false) => {
+    if (!window.location.hash) return;
+    const target = getTargetFromHash(window.location.hash);
+    if (!target) return;
+
+    scrollToSection(target, false, smooth);
+};
+
+window.addEventListener('hashchange', () => handleDirectHashNavigation(true));
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        setTimeout(() => handleDirectHashNavigation(false), 60);
+        setTimeout(() => handleDirectHashNavigation(false), 300);
+    }
+});
 
 const initParallax = () => {
     document.addEventListener('mousemove', (e) => {
@@ -272,20 +861,37 @@ const initParallax = () => {
 };
 
 const initScrollSpy = () => {
-    const sections = document.querySelectorAll('.section, .hero');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+    if (!navLinks.length) return;
+
     window.addEventListener('scroll', () => {
+        const navOffset = getNavOffset() + 30;
         let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id') || (section.classList.contains('hero') ? 'about' : '');
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            const target = getTargetFromHash(href);
+            if (target) {
+                const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
+                if (window.pageYOffset >= targetTop - navOffset) {
+                    current = target.id;
+                }
             }
         });
+
+        if ((window.innerHeight + window.pageYOffset) >= (document.documentElement.scrollHeight - 60)) {
+            const lastLink = navLinks[navLinks.length - 1];
+            if (lastLink) {
+                const lastTarget = getTargetFromHash(lastLink.getAttribute('href'));
+                if (lastTarget) current = lastTarget.id;
+            }
+        }
+
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (current && link.getAttribute('href') === `#${current}`) link.classList.add('active');
+            if (current && link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
         });
     });
 };
@@ -301,22 +907,27 @@ const initHeroSlideshow = () => {
     }, 4000);
 };
 
-const initResumeLoading = () => {
-    const resumePreview = document.querySelector('.resume-preview');
-    const iframe = resumePreview ? resumePreview.querySelector('iframe') : null;
-    if (iframe) {
-        iframe.onload = () => {
-            resumePreview.classList.add('loaded');
-        };
-    }
-};
-
 document.addEventListener('DOMContentLoaded', () => {
-    initReveal(); initNavbar(); initSmoothScroll(); initParallax(); initScrollSpy(); initHeroSlideshow();
-    initCardSlideshows(); initResumeLoading();
+    initReveal(); initNavbar(); initSmoothScroll(); initParallax(); initScrollSpy(); initHeroSlideshow(); handleDirectHashNavigation();
+    initCardSlideshows();
+    loadWorkshopGallery();
     window.openModal = openModal; window.closeModal = closeModal;
     window.openCertModal = openCertModal; window.closeCertModal = closeCertModal;
 });
 
 window.openModal = openModal; window.closeModal = closeModal;
 window.openCertModal = openCertModal; window.closeCertModal = closeCertModal;
+
+window.openWorkshopModal = openWorkshopModal;
+window.closeWorkshopModal = closeWorkshopModal;
+window.toggleWorkshopPlay = toggleWorkshopPlay;
+window.prevWorkshopVideo = prevWorkshopVideo;
+window.nextWorkshopVideo = nextWorkshopVideo;
+window.toggleWorkshopMute = toggleWorkshopMute;
+window.setWorkshopVolume = setWorkshopVolume;
+window.toggleSpeedMenu = toggleSpeedMenu;
+window.setWorkshopSpeed = setWorkshopSpeed;
+window.toggleWorkshopFullscreen = toggleWorkshopFullscreen;
+window.toggleWorkshopPip = toggleWorkshopPip;
+window.renderWorkshopGallery = renderWorkshopGallery;
+window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
